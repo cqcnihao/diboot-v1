@@ -30,6 +30,8 @@
 </#if>
 <script type="text/javascript">
 $(document).ready(function(){
+    <#--启用鼠标hover打开菜单事件
+    $('.nav-item').addClass('needHover')-->
     <#-- 初始化当前页面的JS事件 -->
     $.Utils.initPageEvent();
     $.Utils.focusMenu();

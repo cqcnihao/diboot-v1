@@ -171,7 +171,7 @@ if (toastr) {
                     $(this).removeClass('open')
                 });
                 //左侧子菜单鼠标hover事件
-                $('.nav-item').hover(function () {
+                $('.nav-item.needHover').hover(function () {
                     if(!$(this).hasClass('menu-open')){
                         $(this).find('a').trigger('click')
                     }
