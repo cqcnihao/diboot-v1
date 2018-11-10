@@ -1,4 +1,6 @@
 {
+    "title": "Diboot移动端基础项目",
+    "description": "Diboot移动端基础项目",
     "plugins": ["-sharing", "sharing-plus", "anchor-navigation-ex", "theme-vuejs-2"],
     "pluginsConfig": {
         "sharing": {
