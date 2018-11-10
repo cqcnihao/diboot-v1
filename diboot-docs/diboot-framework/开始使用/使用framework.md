@@ -6,7 +6,7 @@
 2. 按照自己的项目需求进行配置，提交后下载项目基础代码（含diboot-framework依赖）
 3. 将项目代码导入到您的IDEA或Eclipse等IDE中
 4. 在导入成功后，启用刷新gradle下载依赖jar包。
-5. 如您启用了"[diboot开发助理](http://devtools.diboot.com)"，项目初次运行时开发助理会自动创建framework所依赖的数据库表，
+5. 如您启用了"[diboot开发助理](www.diboot.com/diboot-devtools/purchase.html)"，项目初次运行时开发助理会自动创建framework所依赖的数据库表，
    否则需要您手动执行framework下的install.sql文件到您的数据库。
    
 ## 已有项目中使用
