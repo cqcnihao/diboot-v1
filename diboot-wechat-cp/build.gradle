@@ -33,7 +33,6 @@ dependencies {
             "javax.servlet:javax.servlet-api:4.0.1"
     )
     // 编译依赖项目
-    compile project(":diboot-framework")
     compile project(":diboot-common")
 
     // 依赖第三方微信开发包jar

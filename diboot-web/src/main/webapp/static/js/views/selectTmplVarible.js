@@ -4,6 +4,7 @@ var vm = new Vue({
     data: {
         tmplCode: $("#code").val(),
         varibles: [],
+        msgTitle: $("#msgTitle").val(),
         content: $("#content").val()
     },
     methods: {

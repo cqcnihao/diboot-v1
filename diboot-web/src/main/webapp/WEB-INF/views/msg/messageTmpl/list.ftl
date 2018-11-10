@@ -3,14 +3,14 @@
 <#include "../../include/head.ftl">
 <body class="${bodyClass}">
 <@wrapper>
-	<@location loc1="短信模板管理" loc1url="${ctx.contextPath}/msg/messageTmpl/" loc2="短信模板记录" />
+	<@location loc1="消息模板管理" loc1url="${ctx.contextPath}/msg/messageTmpl/" loc2="消息模板记录" />
 	<div class="content">
 		<@portlet>
-			<@portletTitle title="短信模板记录">
+			<@portletTitle title="消息模板记录">
 				<#if features?seq_contains("C")>
 					<@actions>
 						<a class="btn btn-sm blue" href="${ctx.contextPath}/msg/messageTmpl/create">
-							<i class="fa fa-plus"></i> 新建短信模板
+							<i class="fa fa-plus"></i> 新建消息模板
 						</a>
 					</@actions>
 				</#if>

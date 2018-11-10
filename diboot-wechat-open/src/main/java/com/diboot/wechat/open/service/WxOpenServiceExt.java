@@ -50,23 +50,27 @@ public class WxOpenServiceExt extends WxOpenServiceImpl {
         configStorage.setComponentAesKey(aesKey);
 
         // 设置authorizer_refresh_token
-        Query query = new Query(WxAuthOpen.F.enabled, true);
-        List<WxAuthOpen> wxAuthOpens = wxAuthOpenService.getModelList(query.build());
-        if (V.notEmpty(wxAuthOpens)){
-            for (WxAuthOpen wxAuthOpen : wxAuthOpens){
-                if (V.notEmpty(wxAuthOpen.getAppid()) && V.notEmpty(wxAuthOpen.getAuthorizerRefreshToken())){
-                    configStorage.setAuthorizerRefreshToken(wxAuthOpen.getAppid(), wxAuthOpen.getAuthorizerRefreshToken());
+        try{
+            Query query = new Query(WxAuthOpen.F.enabled, true);
+            List<WxAuthOpen> wxAuthOpens = wxAuthOpenService.getModelList(query.build());
+            if (V.notEmpty(wxAuthOpens)){
+                for (WxAuthOpen wxAuthOpen : wxAuthOpens){
+                    if (V.notEmpty(wxAuthOpen.getAppid()) && V.notEmpty(wxAuthOpen.getAuthorizerRefreshToken())){
+                        configStorage.setAuthorizerRefreshToken(wxAuthOpen.getAppid(), wxAuthOpen.getAuthorizerRefreshToken());
+                    }
                 }
             }
+
+            // 如果数据库中存储着有效的componentVerifyTicket，则赋值改ticket
+            String componentVerifyTicket = wxConfigStorageService.getOpenComponentVerifyTicket();
+            if (V.notEmpty(componentVerifyTicket)){
+                configStorage.setComponentVerifyTicket(componentVerifyTicket);
+            }
+            setWxOpenConfigStorage(configStorage);
+        } catch(Exception e){
+            logger.error("设置认证信息出错，请检查是否具有wx_auth_open，wx_config_storage，wx_member等数据表，如果没有相关表，请执行wechat-open模块中src/main/resources/install.sql中的SQL语句", e);
         }
 
-        // 如果数据库中存储着有效的componentVerifyTicket，则赋值改ticket
-        String componentVerifyTicket = wxConfigStorageService.getOpenComponentVerifyTicket();
-        if (V.notEmpty(componentVerifyTicket)){
-            configStorage.setComponentVerifyTicket(componentVerifyTicket);
-        }
-
-        setWxOpenConfigStorage(configStorage);
         wxOpenMessageRouter = new WxOpenMessageRouter(this);
         wxOpenMessageRouter.rule().handler(new WxMpMessageHandler() {
             @Override

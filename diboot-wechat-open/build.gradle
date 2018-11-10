@@ -2,7 +2,6 @@ group 'com.diboot'
 version '1.0'
 
 apply plugin: 'java'
-apply plugin: 'war'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -34,7 +33,6 @@ dependencies {
     )
     // 编译依赖项目
     compile project(":diboot-common")
-    compile project(":diboot-rest")
 
     // 依赖第三方微信开发包jar
     compile("com.github.binarywang:weixin-java-open:3.2.0")

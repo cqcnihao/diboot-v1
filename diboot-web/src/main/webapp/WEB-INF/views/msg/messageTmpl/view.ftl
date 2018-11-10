@@ -2,10 +2,10 @@
 <#include "../../include/head.ftl">
 <body class="${bodyClass}">
 <@wrapper>
-	<@location loc1="短信模板管理" loc1url="${ctx.contextPath}/msg/messageTmpl/" loc2="查看短信模板" back=true/>
+	<@location loc1="消息模板管理" loc1url="${ctx.contextPath}/msg/messageTmpl/" loc2="查看消息模板" back=true/>
 	<div class="content">
 		<@portlet>
-			<@portletTitle title="查看短信模板">
+			<@portletTitle title="查看消息模板">
 				<@actions>
 					<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown">  操作
 						<i class="fa fa-angle-down"></i>
@@ -14,7 +14,7 @@
 						<#if features?seq_contains("U")>
 							<li>
 								<a class="font-blue" href="${ctx.contextPath}/msg/messageTmpl/update/${model.id}">
-									<i class="fa fa-edit font-blue"></i> 修改短信模板
+									<i class="fa fa-edit font-blue"></i> 修改消息模板
 								</a>
 							</li>
 							<li class="divider"> </li>
@@ -23,7 +23,7 @@
 							<li>
 								<a href="#" class="action-confirm font-red" title="删除记录" data-confirm="您确认要删除该记录吗？"
 								   data-url="${ctx.contextPath}/msg/messageTmpl/delete/${model.id}" data-redirect="${ctx.contextPath}/msg/messageTmpl/" >
-									<i class="fa fa-times font-red"></i> 删除短信模板
+									<i class="fa fa-times font-red"></i> 删除消息模板
 								</a>
 							</li>
 							<li class="divider"> </li>
@@ -31,7 +31,7 @@
 						<#if features?seq_contains("C")>
 							<li>
 								<a class="font-green" href="${ctx.contextPath}/msg/messageTmpl/create">
-									<i class="fa fa-plus font-green"></i> 新建短信模板
+									<i class="fa fa-plus font-green"></i> 新建消息模板
 								</a>
 							</li>
 							<li class="divider"> </li>

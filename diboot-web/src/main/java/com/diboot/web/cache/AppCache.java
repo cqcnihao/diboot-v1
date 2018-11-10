@@ -56,7 +56,7 @@ public class AppCache{
 			}
 		}
 		catch (Exception e){
-			logger.warn("加载数据库菜单异常: " + e.getMessage());
+			logger.warn("加载菜单异常，请检查数据库连接及相关表是否正常: " + e.getMessage());
 		}
 	}
 

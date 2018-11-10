@@ -39,7 +39,7 @@ import java.util.Set;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.diboot"})
+@ComponentScan(basePackages={"com.diboot"})
 @MapperScan(basePackages={"com.diboot.**.mapper"})
 public class SpringMvcConfig implements WebMvcConfigurer{
     private static final Logger logger = LoggerFactory.getLogger(SpringMvcConfig.class);

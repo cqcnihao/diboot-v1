@@ -16,16 +16,16 @@
                    value="<#if (model.code)??>${model.code}</#if>" disabled>
             <input name="code" type="hidden" value="<#if (model.code)??>${model.code}</#if>" />
             <input name="system" type="hidden" value="true" />
-		<#else>
+        <#else>
             <select @change="getTmplVaribles" v-model="tmplCode" name="code" id="code" class="form-control">
                 <option value="">-请选择模板-</option>
                 <#if (tmplCodeList)??>
-					<#list tmplCodeList as opt>
+                    <#list tmplCodeList as opt>
 				<option value="${(opt.itemValue)!''}"<#if (model.code)?? && model.code==opt.itemValue> selected</#if>>${(opt.itemName)!''}</option>
-					</#list>
-				</#if>
+                    </#list>
+                </#if>
             </select>
-		</#if>
+        </#if>
         </div>
     </div>
 <#--
@@ -47,7 +47,7 @@
     </div>
     <div class="form-group" v-if="varibles.length > 0">
         <label class="col-md-2 control-label">模板变量</label>
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="row">
                 <div class="col-md-12">
                     <a v-for="v in varibles" @click="addVarible(v)" href="javascript:;" class="btn default blue-stripe margin-r-5">{{ v }}</a>
@@ -55,11 +55,23 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2">
+            <select v-model="addTo" id="addTo" class="form-control">
+                <option value="content">添加到内容</option>
+                <option value="msgTitle">添加到标题</option>
+            </select>
+        </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="content">内容 <@required /></label>
+        <label class="col-md-2 control-label" for="msgTitle">消息标题 <@required /></label>
         <div class="col-md-9">
-			<textarea v-model="content" id="content" name="content" class="form-control" placeholder="内容" required="true"
+            <input v-model="msgTitle" type="text" id="msgTitle" name="msgTitle" class="form-control" placeholder="消息标题" required="true" data-fv="NotNull,Length(-255)" value="${(model.msgTitle)!''}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="content">消息内容 <@required /></label>
+        <div class="col-md-9">
+			<textarea v-model="content" id="content" name="content" class="form-control" placeholder="消息内容" required="true"
                       data-fv="NotNull,Length(-512)"><#if (model.content)??>${model.content}</#if></textarea>
         </div>
     </div>
@@ -75,9 +87,9 @@
         <div class="col-md-offset-2 col-md-2">
 			<#if (model.id)??>
                 <button class="btn btn-primary btn-block" type="submit"> 提交更新 </button>
-			<#else>
+            <#else>
 			<button class="btn btn-success btn-block" type="submit"> 提交 </button>
-			</#if>
+            </#if>
         </div>
     </div>
 </form>

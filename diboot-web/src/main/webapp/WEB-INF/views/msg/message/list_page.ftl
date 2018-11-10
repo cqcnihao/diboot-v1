@@ -4,7 +4,7 @@
     <thead>
     <tr>
     	<th>接收号码</th>
-    	<th>短信模板</th>
+    	<th>消息模板</th>
         <th>内容</th>
     	<th>发送状态</th>
     	<th>发送人</th>
