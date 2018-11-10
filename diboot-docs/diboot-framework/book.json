@@ -1,4 +1,6 @@
 {
+    "title": "Diboot基础框架",
+    "description": "Diboot基础框架",
     "plugins": ["-sharing", "sharing-plus", "anchor-navigation-ex", "theme-vuejs-2"],
     "pluginsConfig": {
         "sharing": {

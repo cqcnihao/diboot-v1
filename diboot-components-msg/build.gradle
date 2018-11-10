@@ -1,5 +1,5 @@
 group 'com.diboot'
-version '1.0'
+version '1.0.1'
 
 apply plugin: 'java'
 
@@ -77,6 +77,9 @@ dependencies {
             "org.apache.logging.log4j:log4j-slf4j-impl:2.11.1",
             "com.lmax:disruptor:3.4.2")
     compile("org.slf4j:slf4j-api:1.7.25")
+
+    // Ezmorph
+    compile("net.sf.ezmorph:ezmorph:1.0.3")
 
     // 单元测试的依赖
     testCompile("org.springframework:spring-test:$springVersion",
