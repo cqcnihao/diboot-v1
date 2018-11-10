@@ -1,4 +1,4 @@
-# token登录授权
+# JWT认证
 
 diboot-framework默认是用Shrio进行用户认证，包括登陆和权限认证
 
