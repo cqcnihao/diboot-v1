@@ -33,8 +33,10 @@ dependencies {
     providedCompile(
             "javax.servlet:javax.servlet-api:4.0.1"
     )
-    // diboot组件
-    compile fileTree(dir:'libs', include:['*.jar'])
+    // 依赖diboot
+    compile("com.diboot:diboot-framework:1.5")
+    compile("com.diboot:diboot-components-file:1.0.1")
+    compile("com.diboot:diboot-components-msg:1.0")
 
     // Spring依赖
     compile("org.springframework:spring-jdbc:$springVersion",

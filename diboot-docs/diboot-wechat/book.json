@@ -1,4 +1,6 @@
 {
+    "title": "Diboot微信模块",
+    "description": "Diboot微信模块",
     "plugins": ["-sharing", "sharing-plus", "anchor-navigation-ex", "theme-vuejs-2"],
     "pluginsConfig": {
         "sharing": {

@@ -325,9 +325,9 @@ public abstract class BaseExcelImportController extends BaseCrudController {
                 if (!isPreview) {
                     String error = null;
                     for(Object colIndexObj : index2ModelMap.keySet()){
-                        int colIndex = (int)colIndexObj;
+                        int colIndex = Integer.valueOf((String) colIndexObj);
                         // 校验字符串的值
-                        ExcelColumn col = index2ModelMap.get(colIndex);
+                        ExcelColumn col = index2ModelMap.get(colIndexObj);
                         String cellValue = dataArray[colIndex-1];
                         String errorMsg = V.validate(cellValue, col.getValidation());
                         if(V.notEmpty(errorMsg)){

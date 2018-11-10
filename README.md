@@ -1,6 +1,6 @@
 # diboot 基础组件及基础项目介绍
 此仓库是diboot相关的基础框架组件和web/rest项目的基础代码仓库，如果您需要: 
- > 使用Diboot和Diboot开发助理，直接从 [生成初始项目](http://devtools.diboot.com/diboot-api/html/start.html) 开始
+ > 使用Diboot和Diboot开发助理，直接从 [生成初始项目](https://www.diboot.com/g/) 开始
  
  > 了解Diboot和Diboot开发助理，[请到这里](http://www.diboot.com/)
  
@@ -39,8 +39,8 @@ diboot体系的基础框架，广泛适用于Java Web开发的轻量级封装框
 * diboot-web目前版本基于Spring MVC 5.0 (后续将推出基于Spring Boot 2.x的版本) 和 Freemarker、FastJson，数据库连接池默认为HikariCP。
 * diboot-web UI框架采用基于Bootstrap的基础版模板(AdminLTE)和专业版模板(Metronic 4.7)
     > Metronic是商业模板，如果需要使用专业版，请先[购买授权](https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469)，
-      然后到 [diboot初始项目生成](http://devtools.diboot.com/diboot-api/html/start.html) 页面生成基于专业版模板的web初始项目。
-        
+      然后到 [diboot初始项目生成](https://www.diboot.com/g/) 页面生成基于专业版模板的web初始项目。
+                
 ## Rest接口开发基础项目 diboot-rest
 集成了rest接口开发必备的基础功能的基础项目，用以快速开始您的rest接口开发。
 > Diboot开发助理(diboot-devtools-rest.jar)是针对rest接口开发的代码生成利器，可以让你脱离重复、专注业务、效率倍增

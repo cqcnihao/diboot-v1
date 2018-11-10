@@ -1,4 +1,6 @@
 {
+    "title": "Diboot PC端基础项目",
+    "description": "Diboot PC端基础项目",
     "plugins": ["-sharing", "sharing-plus", "anchor-navigation-ex", "theme-vuejs-2"],
     "pluginsConfig": {
         "sharing": {
