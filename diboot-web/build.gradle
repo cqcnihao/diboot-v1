@@ -105,6 +105,7 @@ dependencies {
     // 微信开发组件
     //compile("com.github.binarywang:weixin-java-mp:3.2.0")
     //compile("com.github.binarywang:weixin-java-cp:3.2.0")
+    //compile("com.github.binarywang:weixin-java-open:3.2.0")
 
     // 测试编译时的依赖
     testCompile("org.springframework:spring-test:$springVersion",

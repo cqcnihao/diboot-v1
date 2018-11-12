@@ -120,7 +120,7 @@ public class SpringMvcConfig implements WebMvcConfigurer, AsyncConfigurer {
     @Bean(name = "freeMarkerConfigurer")
     public FreeMarkerConfigurer freeMarkerConfigurer(){
 		FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-    	freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views-pro/");
+    	freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/");
     	
     	Properties settings = new Properties();
     	settings.setProperty("locale", "zh_CN");
