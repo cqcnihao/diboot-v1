@@ -26,7 +26,7 @@ import java.util.Map;
  * 定时任务相关操作Controller
  * @author Mazc@dibo.ltd
  * @version 2018-01-20
- * © 2017 www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/timerTask")

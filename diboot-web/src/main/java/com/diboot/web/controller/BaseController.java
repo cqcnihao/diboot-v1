@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * Dibo Controller的父类
  * @author Mazc@dibo.ltd
  * @version 2016年12月5日
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 public abstract class BaseController extends com.diboot.framework.controller.BaseController{

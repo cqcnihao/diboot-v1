@@ -9,7 +9,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * 定时任务的默认配置
  * @author Mazc@dibo.ltd
  * @version 2018/4/12
- * Copyright © www.dibo.ltd
+ *
  */
 public class BaseSchedulerConfigurer implements SchedulingConfigurer{
 

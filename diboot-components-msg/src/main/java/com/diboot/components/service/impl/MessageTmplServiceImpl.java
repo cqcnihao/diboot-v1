@@ -21,7 +21,7 @@ import java.util.List;
 * 消息模板相关操作Service
 * @author Mazc@dibo.ltd
 * @version 2017-09-14
-* Copyright @ www.dibo.ltd
+*
 */
 @Service
 public class MessageTmplServiceImpl extends BaseServiceImpl implements MessageTmplService {

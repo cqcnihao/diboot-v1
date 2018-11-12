@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Dibo Session Listener 
  * @author Mazc@dibo.ltd
  * @version 2017年3月7日
- * Copyright 2017 www.dibo.ltd
+ *
  */
 public class SessionListener extends SessionListenerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(SessionListener.class);

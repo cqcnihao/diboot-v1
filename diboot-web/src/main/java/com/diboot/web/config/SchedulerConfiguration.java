@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  * 定时任务配置
  * @author Mazc@dibo.ltd
  * @version 2018/4/12
- * Copyright © www.dibo.ltd
+ *
  */
 @Configuration
 @EnableScheduling

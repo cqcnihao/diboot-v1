@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * 默认的异常处理
  * @author Mazc@dibo.ltd
  * @version 2018/4/11
- * Copyright © www.dibo.ltd
+ *
  */
 @ControllerAdvice
 public class DefaultExceptionController {

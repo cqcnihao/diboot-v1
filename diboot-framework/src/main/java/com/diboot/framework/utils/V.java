@@ -10,7 +10,7 @@ import java.util.*;
  * Dibo Validator 
  * @author Mazc@dibo.ltd
  * @version 2016年11月24日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class V {
 	private static final Logger logger = LoggerFactory.getLogger(V.class);

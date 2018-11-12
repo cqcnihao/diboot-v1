@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * 异常处理类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class ExceptionController extends BaseController{
 	private static final Logger logger = LoggerFactory.getLogger(ExceptionController.class);

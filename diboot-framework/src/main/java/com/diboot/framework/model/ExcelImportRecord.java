@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 * 导入记录 Model对象定义
 * @author Mazc@dibo.ltd
 * @version 2018-06-11
-* Copyright © www.dibo.ltd
+*
 */
 public class ExcelImportRecord extends BaseModel{
 	private static final long serialVersionUID = -1207584493211061321L;

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * <p>用户信息接口（包含用户信息的增删改查等）</p>
  * @author Mazc@dibo.ltd
  * @version 2017/9/1
- * Copyright @ www.dibo.ltd
+ *
  */
 @RestController
 @RequestMapping("/user")

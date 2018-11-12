@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/3/28
- * Copyright © www.dibo.ltd
+ *
  */
 @Configuration
 public class ShiroConfiguration {

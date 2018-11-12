@@ -30,7 +30,7 @@ import java.util.TreeMap;
  * 短信发送 - Submail实现
  * @author Mazc@dibo.ltd
  * @version 2017/9/14
- * Copyright @ www.dibo.ltd
+ *
  */
 public class SmsServiceSubmailImpl implements SmsService {
     private static final Logger logger = LoggerFactory.getLogger(SmsServiceSubmailImpl.class);

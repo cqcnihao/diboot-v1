@@ -22,7 +22,7 @@ import java.util.Map;
  * 短信功能 - 移通实现 
  * @author Mazc@dibo.ltd
  * @version 2017年1月13日
- * Copyright 2017 www.dibo.ltd
+ *
  */
 public class SmsServiceEtonImpl implements SmsService {
     private static final Logger logger = LoggerFactory.getLogger(SmsServiceEtonImpl.class);

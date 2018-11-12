@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * 用户认证相关Mapper
  * @author Mazc@dibo.ltd
  * @version 2018-06-08
- * Copyright © www.dibo.ltd
+ *
  */
 @Component
 public interface BaseAuthUserMapper extends BaseMapper {

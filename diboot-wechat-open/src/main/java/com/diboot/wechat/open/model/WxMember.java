@@ -10,7 +10,7 @@ import java.util.Date;
 * 服务号用户 Model对象定义
 * @author Yangz@dibo.ltd
 * @version 2018-06-24
-* Copyright © www.dibo.ltd
+*
 */
 public class WxMember extends com.diboot.framework.model.BaseUser{
 	private static final long serialVersionUID = -5877139861324834877L;

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  * Dibo Menu-菜单
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseMenu extends BaseTreeModel<BaseMenu>{
 	private static final long serialVersionUID = 202L;

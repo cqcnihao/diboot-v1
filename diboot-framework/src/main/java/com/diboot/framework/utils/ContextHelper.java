@@ -15,7 +15,7 @@ import java.util.Map;
  * Spring上下文帮助类
  * @author Mazc@dibo.ltd
  * @version 2017/8/12
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 @Lazy(false)

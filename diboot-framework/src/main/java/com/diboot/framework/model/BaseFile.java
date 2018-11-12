@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
  * Dibo File-文件
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseFile extends BaseModel{
 	private static final long serialVersionUID = 201L;

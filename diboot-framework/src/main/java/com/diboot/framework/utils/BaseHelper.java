@@ -20,7 +20,7 @@ import java.util.*;
  * 应用通用帮助类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseHelper {
 	private static final Logger logger = LoggerFactory.getLogger(BaseHelper.class);

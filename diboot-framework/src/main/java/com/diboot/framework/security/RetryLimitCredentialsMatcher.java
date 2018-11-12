@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *  自定义用户登录校验，限定失败尝试次数
  * @author Mazc@dibo.ltd
  * @version 2018/1/4
- * Copyright © www.dibo.ltd
+ *
  */
 public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {
     private static final Logger logger = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);

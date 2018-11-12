@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * 组织单位相关操作Service实现类
  * @author Mazc@dibo.ltd
  * @version 2017/11/7
- * Copyright © www.dibo.ltd
+ *
  */
 @Service("organizationService")
 public class OrganizationServiceImpl extends BaseOrgServiceImpl implements OrganizationService {

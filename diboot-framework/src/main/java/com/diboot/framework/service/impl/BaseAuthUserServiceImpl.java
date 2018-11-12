@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 * 用户认证相关操作Service
 * @author Mazc@dibo.ltd
 * @version 2018-06-08
-* Copyright © www.dibo.ltd
+*
 */
 @Service("baseAuthUserService")
 public class BaseAuthUserServiceImpl extends BaseServiceImpl implements BaseAuthUserService {

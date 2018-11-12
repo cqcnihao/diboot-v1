@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * 登录认证/申请token相关操作Controller
  * @author Mazc@dibo.ltd
  * @version 2018/1/4
- * Copyright © www.dibo.ltd
+ *
  */
 @RestController
 @RequestMapping("/token/wechat/cp")

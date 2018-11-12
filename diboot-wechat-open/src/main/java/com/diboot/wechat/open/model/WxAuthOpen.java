@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 * 服务号授权 Model对象定义
 * @author Yangz@dibo.ltd
 * @version 2018-06-21
-* Copyright © www.dibo.ltd
+*
 */
 public class WxAuthOpen extends com.diboot.framework.model.BaseModel{
 	private static final long serialVersionUID = -3063345465794911481L;

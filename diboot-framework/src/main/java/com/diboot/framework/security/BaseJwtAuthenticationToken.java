@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/1/6
- * Copyright © www.dibo.ltd
+ *
  */
 public class BaseJwtAuthenticationToken implements AuthenticationToken{
     // 用户名

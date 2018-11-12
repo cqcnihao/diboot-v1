@@ -8,7 +8,7 @@ import java.util.List;
  * 可插拔的模块接口
  * @author Mazc@dibo.ltd
  * @version 2017/10/23
- * Copyright @ www.dibo.ltd
+ *
  */
 public interface PluggableModule {
 

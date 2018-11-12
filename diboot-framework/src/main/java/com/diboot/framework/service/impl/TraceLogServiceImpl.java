@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 @Service
 public class TraceLogServiceImpl extends BaseServiceImpl implements TraceLogService {

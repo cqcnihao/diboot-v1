@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/3/6
- * Copyright © www.dibo.ltd
+ *
  */
 @Component
 public class MsgPluginModule implements PluggableModule {

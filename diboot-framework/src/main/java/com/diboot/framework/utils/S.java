@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * Dibo String 操作类 
  * @author Mazc@dibo.ltd
  * @version 2016年11月24日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class S extends StringUtils{
 	// 默认分隔符

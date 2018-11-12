@@ -26,7 +26,7 @@ import java.util.List;
 * 消息相关操作Service
 * @author Mazc@dibo.ltd
 * @version 2017-09-14
-* Copyright @ www.dibo.ltd
+*
 */
 @Service
 public class MessageServiceImpl extends BaseServiceImpl implements MessageService {

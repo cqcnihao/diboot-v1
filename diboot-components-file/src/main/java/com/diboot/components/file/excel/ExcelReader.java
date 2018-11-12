@@ -28,7 +28,7 @@ import java.util.List;
  * Dibo Excel 读取类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class ExcelReader {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelReader.class);

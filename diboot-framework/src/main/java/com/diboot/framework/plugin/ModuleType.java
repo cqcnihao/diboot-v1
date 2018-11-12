@@ -4,7 +4,7 @@ package com.diboot.framework.plugin;
  *  模块类型枚举定义
  * @author Mazc@dibo.ltd
  * @version 2018/3/3
- * Copyright © www.dibo.ltd
+ *
  */
 public enum ModuleType {
     /***
