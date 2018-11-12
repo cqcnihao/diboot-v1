@@ -1,5 +1,6 @@
 package com.diboot.rest.config;
 
+import com.diboot.framework.utils.V;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,4 +13,13 @@ import org.slf4j.LoggerFactory;
 public class AppConfig extends com.diboot.framework.config.BaseConfig{
 	private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
+	/***
+	 * 是否为生产环境
+	 * @return
+	 */
+	public static boolean isProductionEnv(){
+		//TODO 修改为自己的生产环境标识
+		String editionFlag = getProperty("datasource.url");
+		return !(V.notEmpty(editionFlag) && editionFlag.contains("127.0.0.1"));
+	}
 }
