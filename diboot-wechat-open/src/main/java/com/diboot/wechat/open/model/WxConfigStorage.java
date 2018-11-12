@@ -6,7 +6,7 @@ import com.diboot.framework.model.BaseModel;
 * 微信参数 Model对象定义
 * @author Mazc@dibo.ltd
 * @version 2018-06-21
-* Copyright © www.dibo.ltd
+*
 */
 public class WxConfigStorage extends com.diboot.framework.model.BaseModel{
 	private static final long serialVersionUID = 5817601963909417534L;

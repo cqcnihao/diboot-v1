@@ -25,7 +25,7 @@ import java.util.Map;
  * 单位相关操作Controller
  * @author Mazc@dibo.ltd
  * @version 2017-05-14
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/organization")

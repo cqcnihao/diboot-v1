@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
  *      5000: 系统异常
  * @author Mazc@dibo.ltd
  * @version 2018/1/4
- * Copyright © www.dibo.ltd
+ *
  */
 @RestController
 @RequestMapping("/token")

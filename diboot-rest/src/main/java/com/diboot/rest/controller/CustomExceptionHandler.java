@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * 自定义异常处理类
  * @author Mazc@dibo.ltd
  * @version 2018/4/11
- * Copyright © www.dibo.ltd
+ *
  */
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {

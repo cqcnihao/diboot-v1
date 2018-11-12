@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Excel导入基类
  * @author Mazc@dibo.ltd
  * @version 2017/9/18
- * Copyright @ www.dibo.ltd
+ *
  */
 public abstract class BaseExcelImportController extends BaseCrudController {
     private static final Logger logger = LoggerFactory.getLogger(BaseExcelImportController.class);

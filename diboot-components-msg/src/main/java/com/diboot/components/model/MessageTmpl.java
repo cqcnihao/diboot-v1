@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 * 消息模板
 * @author Mazc@dibo.ltd
 * @version 2017-09-14
-* Copyright @ www.dibo.ltd
+*
 */
 public class MessageTmpl extends BaseModel {
 	private static final long serialVersionUID = -8481654766854879458L;

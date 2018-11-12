@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * 单元测试样例
  * @author Mazc@dibo.ltd
  * @version 2017/4/18
- * Copyright @ www.dibo.ltd
+ *
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UnitTestExample.class)

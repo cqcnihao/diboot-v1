@@ -27,7 +27,7 @@ import java.util.Map;
  * 用户相关操作Controller
  * @author Mazc
  * @version 2016-12-09
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/user")

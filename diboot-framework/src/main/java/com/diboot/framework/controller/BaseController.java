@@ -24,7 +24,7 @@ import java.util.*;
  * Controller的父类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 public class BaseController {

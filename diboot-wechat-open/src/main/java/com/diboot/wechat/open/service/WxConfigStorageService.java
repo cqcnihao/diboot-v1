@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * 微信参数相关操作Service
  * @author Mazc@dibo.ltd
  * @version 2018-06-21
- * Copyright © www.dibo.ltd
+ *
 */
 @Component
 public interface WxConfigStorageService extends BaseService{

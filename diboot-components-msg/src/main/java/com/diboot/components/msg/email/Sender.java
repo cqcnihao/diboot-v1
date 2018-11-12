@@ -15,7 +15,7 @@ import java.io.File;
  * 邮件发送工具类
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);

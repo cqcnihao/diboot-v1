@@ -6,7 +6,7 @@ import com.diboot.framework.model.TimerTask;
  * 任务执行者接口
  * @author Mazc@dibo.ltd
  * @version 2017年11月17日
- * Copyright@www.Dibo.ltd
+ *
  */
 public interface TaskExecutor {
 

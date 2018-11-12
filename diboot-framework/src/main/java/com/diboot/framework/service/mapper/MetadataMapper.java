@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/4/18
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 public interface MetadataMapper extends BaseMapper{

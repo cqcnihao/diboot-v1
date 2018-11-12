@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * 默认拦截器
  * @author Mazc@dibo.ltd
  * @version 2016年12月6日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class SecurityInterceptor extends BaseRTMInterceptor {
 	private static final Logger logger = LoggerFactory.getLogger(SecurityInterceptor.class);

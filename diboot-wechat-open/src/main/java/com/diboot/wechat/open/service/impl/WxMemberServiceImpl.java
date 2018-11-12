@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 * 服务号用户相关操作Service
 * @author Yangz@dibo.ltd
 * @version 2018-06-24
-* Copyright © www.dibo.ltd
+*
 */
 @Service
 public class WxMemberServiceImpl extends BaseServiceImpl implements WxMemberService{

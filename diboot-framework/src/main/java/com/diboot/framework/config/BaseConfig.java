@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Dibo 系统配置
  * @author Mazc@dibo.ltd
  * @version 2016年12月27日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseConfig {
 	private static final Logger logger = LoggerFactory.getLogger(BaseConfig.class);

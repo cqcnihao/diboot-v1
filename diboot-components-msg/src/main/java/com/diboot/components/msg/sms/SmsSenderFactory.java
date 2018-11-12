@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * 短信发送
  * @author Mazc@dibo.ltd
  * @version 2017/9/14
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 public class SmsSenderFactory {

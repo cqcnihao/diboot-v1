@@ -2,7 +2,7 @@
  * 统计图表相关的echart封装
  * @author Duanhl@dibo.ltd
  * @version 2018-06-29
- * Copyright © www.dibo.ltd
+ *
  */
 /***
  * 柱状图

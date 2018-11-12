@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 * 微信参数相关操作Service
 * @author Mazc@dibo.ltd
 * @version 2018-06-21
-* Copyright © www.dibo.ltd
+*
 */
 @Service
 public class WxConfigStorageServiceImpl extends BaseServiceImpl implements WxConfigStorageService{

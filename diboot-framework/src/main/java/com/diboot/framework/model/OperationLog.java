@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 public class OperationLog extends BaseModel{
     private static final long serialVersionUID  = 1501L;

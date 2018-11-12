@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * 服务号授权相关Mapper
  * @author Yangz@dibo.ltd
  * @version 2018-06-21
- * Copyright © www.dibo.ltd
+ *
  */
 @Component
 public interface WxAuthOpenMapper extends BaseMapper{

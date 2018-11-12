@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  * 用户的组织单位基础信息
  * @author Mazc@dibo.ltd
  * @version 2017/4/18
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseOrg extends BaseTreeModel<BaseOrg> {
     private static final long serialVersionUID = 204L;

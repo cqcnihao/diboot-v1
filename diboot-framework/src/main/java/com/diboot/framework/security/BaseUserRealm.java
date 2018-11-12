@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/3/28
- * Copyright © www.dibo.ltd
+ *
  */
 public class BaseUserRealm extends AuthorizingRealm {
     private static final Logger logger = LoggerFactory.getLogger(BaseUserRealm.class);

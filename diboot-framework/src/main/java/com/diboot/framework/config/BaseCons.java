@@ -4,7 +4,7 @@ package com.diboot.framework.config;
  * 基础常量定义
  * @author Mazc@dibo.ltd
  * @version 2017/8/12
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseCons {
     /**

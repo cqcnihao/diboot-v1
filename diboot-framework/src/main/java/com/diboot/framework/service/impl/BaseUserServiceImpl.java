@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 @Service("baseUserService")
 public class BaseUserServiceImpl extends BaseServiceImpl implements BaseUserService {

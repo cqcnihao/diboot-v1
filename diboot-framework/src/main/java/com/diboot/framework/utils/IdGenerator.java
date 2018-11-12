@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  * 数字类型的ID生成器控件
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class IdGenerator {
 	private static final Logger logger = LoggerFactory.getLogger(IdGenerator.class);

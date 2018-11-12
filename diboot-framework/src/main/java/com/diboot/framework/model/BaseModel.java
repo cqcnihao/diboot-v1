@@ -13,7 +13,7 @@ import java.util.Map;
  * Dibo Model父类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public abstract class BaseModel implements Serializable{
 	private static final long serialVersionUID = 203L;

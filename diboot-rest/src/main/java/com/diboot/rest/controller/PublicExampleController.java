@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 允许匿名访问的Rest接口示例
  * @author Mazc@dibo.ltd
  * @version 2017/9/2
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/public")

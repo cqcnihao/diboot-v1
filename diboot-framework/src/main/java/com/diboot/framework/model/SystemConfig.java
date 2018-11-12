@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
  * 系统配置 Model对象定义
  * @author Mazc@dibo.ltd
  * @version 2018-06-04
- * Copyright © www.dibo.ltd
+ *
  */
 public class SystemConfig extends BaseModel{
     private static final long serialVersionUID = 1901L;

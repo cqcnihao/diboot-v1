@@ -21,7 +21,7 @@ import java.util.Set;
  * 注意: 异步操作方法不能有返回类型，一律定义为void
  * @author Mazc@dibo.ltd
  * @version 2017年4月5日
- * Copyright @ www.dibo.ltd
+ *
  */
 @Async
 @Component

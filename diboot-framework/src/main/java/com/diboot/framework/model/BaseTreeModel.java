@@ -6,7 +6,7 @@ import java.util.List;
  * Dibo Model父类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseTreeModel<T extends BaseTreeModel> extends BaseModel{
 	private static final long serialVersionUID = 205L;

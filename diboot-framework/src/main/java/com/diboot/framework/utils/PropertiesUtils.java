@@ -13,7 +13,7 @@ import java.util.Properties;
  * 配置文件工具类
  * @author Mazc@dibo.ltd
  * @version 2018/1/31
- * Copyright © www.dibo.ltd
+ *
  */
 public class PropertiesUtils {
     private static final Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);

@@ -14,7 +14,7 @@ import java.util.Map;
  * 微信消息发送
  * @author Mazc@dibo.ltd
  * @version 2017/9/14
- * Copyright @ www.dibo.ltd
+ *
  */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);

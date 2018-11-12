@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="createEmptyContentRootDirectories" value="true" />
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/Development/gradle-4.8.1" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/diboot-common" />
+            <option value="$PROJECT_DIR$/diboot-components-file" />
+            <option value="$PROJECT_DIR$/diboot-components-msg" />
+            <option value="$PROJECT_DIR$/diboot-framework" />
+            <option value="$PROJECT_DIR$/diboot-rest" />
+            <option value="$PROJECT_DIR$/diboot-web" />
+            <option value="$PROJECT_DIR$/diboot-wechat-cp" />
+            <option value="$PROJECT_DIR$/diboot-wechat-mp" />
+            <option value="$PROJECT_DIR$/diboot-wechat-open" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

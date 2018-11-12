@@ -10,7 +10,7 @@ import java.util.Map;
  * 系统配置
  * @author Mazc@dibo.ltd
  * @version 2018/1/31
- * Copyright © www.dibo.ltd
+ *
  */
 public class MsgConfig extends BaseConfig {
 

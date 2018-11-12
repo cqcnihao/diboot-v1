@@ -2,7 +2,7 @@
  * 用户页面 script
  * @author Yaojf@dibo.ltd
  * @version 2018/2/1
- * Copyright@www.dibo.ltd
+ * 
  */
 $(document).ready(function(){
     $(".password-btn").click(function(event) {

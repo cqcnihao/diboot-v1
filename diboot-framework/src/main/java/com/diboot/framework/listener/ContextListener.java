@@ -10,7 +10,7 @@ import javax.servlet.ServletContextListener;
  * Dibo Context Listener 
  * @author Mazc@dibo.ltd
  * @version 2017年3月21日
- * Copyright 2017 www.dibo.ltd
+ *
  */
 public class ContextListener implements ServletContextListener{
 	private static final Logger logger = LoggerFactory.getLogger(ContextListener.class);

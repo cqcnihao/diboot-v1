@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * Dibo Spring配置文件 
  * @author Mazc@dibo.ltd
  * @version 2016年12月7日
- * Copyright @ www.dibo.ltd
+ *
  */
 @Configuration
 @EnableTransactionManagement(proxyTargetClass=true)

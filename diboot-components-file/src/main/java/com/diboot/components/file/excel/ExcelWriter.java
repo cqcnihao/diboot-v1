@@ -20,7 +20,7 @@ import java.util.List;
  * Dibo Excel Writer: 生成Excel适用
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 public class ExcelWriter {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelWriter.class);

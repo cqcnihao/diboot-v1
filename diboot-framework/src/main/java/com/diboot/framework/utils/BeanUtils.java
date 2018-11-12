@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Model相关处理Helper类
  * @author Mazc@dibo.ltd
  * @version 2017/8/12
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BeanUtils{
     private static final Logger logger = LoggerFactory.getLogger(BeanUtils.class);

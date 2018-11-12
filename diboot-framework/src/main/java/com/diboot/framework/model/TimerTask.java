@@ -9,7 +9,7 @@ import java.util.Date;
 * 定时任务
 * @author Mazc@dibo.ltd
 * @version 2018-01-20
-* © 2017 www.dibo.ltd
+*
 */
 public class TimerTask extends BaseModel{
 	private static final long serialVersionUID = 2001L;

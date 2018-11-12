@@ -13,7 +13,7 @@ import java.io.IOException;
  * XSS保护Filter
  * @author Mazc@dibo.ltd
  * @version 2017年11月25日
- * Copyright@www.Dibo.ltd
+ *
  */
 public class XssProtectionFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(XssProtectionFilter.class);

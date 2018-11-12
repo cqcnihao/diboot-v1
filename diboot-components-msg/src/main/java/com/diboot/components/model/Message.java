@@ -11,7 +11,7 @@ import java.util.Date;
 * 消息
 * @author Mazc@dibo.ltd
 * @version 2017-09-14
-* Copyright @ www.dibo.ltd
+*
 */
 public class Message extends BaseModel {
 	private static final long serialVersionUID = -9045277122744155137L;
