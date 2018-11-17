@@ -1,6 +1,5 @@
 package com.diboot.rest.config;
 
-import com.diboot.framework.utils.V;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +19,6 @@ public class AppConfig extends com.diboot.framework.config.BaseConfig{
 	public static boolean isProductionEnv(){
 		//TODO 修改为自己的生产环境标识
 		String editionFlag = getProperty("datasource.url");
-		return !(V.notEmpty(editionFlag) && editionFlag.contains("127.0.0.1"));
+		return editionFlag.contains(".rds.");
 	}
 }
