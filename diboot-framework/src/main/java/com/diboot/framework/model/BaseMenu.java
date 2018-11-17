@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 /***
- * Dibo Menu-菜单
+ * Menu-菜单
  * @author Mazc@dibo.ltd
  * @version 20161107
  *

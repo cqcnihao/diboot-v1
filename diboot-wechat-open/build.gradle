@@ -25,7 +25,7 @@ sourceSets {
     }
 }
 dependencies {
-    def springVersion = "5.0.10.RELEASE"
+    def springVersion = "5.1.2.RELEASE"
 
     // providedCompile在编译时提供，不会写入war
     providedCompile(

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /***
- * Dibo Excel 读取类
+ * Excel 读取类
  * @author Mazc@dibo.ltd
  * @version 20161107
  *

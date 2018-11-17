@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /***
- * Dibo 常量定义
+ * 常量定义
  * @author Mazc@dibo.ltd
  * @version 2016年12月5日
  *

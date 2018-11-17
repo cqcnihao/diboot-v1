@@ -8,7 +8,7 @@ import org.apache.shiro.session.SessionListenerAdapter;
 import java.util.concurrent.atomic.AtomicLong;
 
 /***
- * Dibo Session Listener 
+ * Session Listener
  * @author Mazc@dibo.ltd
  * @version 2017年3月7日
  *

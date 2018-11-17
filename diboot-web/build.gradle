@@ -29,7 +29,7 @@ sourceSets {
 }
 
 dependencies {
-    def springVersion = "5.0.10.RELEASE"
+    def springVersion = "5.1.2.RELEASE"
     def shiroVersion = "1.4.0"
     def poiVersion = "3.17"
     
@@ -126,7 +126,7 @@ task clearProfileFolder(type: Delete) {
 war{
     dependsOn clearProfileFolder
     manifest {
-        attributes('Implementation-Title': 'Dibo Web')
+        attributes('Implementation-Title': 'Diboot Web Project')
     }
 }
 sourceSets.main.compileClasspath += configurations.providedCompile

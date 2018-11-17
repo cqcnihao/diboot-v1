@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /***
- * Dibo 常用查询构建，用于辅助创建criteria map
+ * 常用查询构建类，用于辅助创建criteria map
  * @author Mazc@dibo.ltd
  * @version 2016年12月27日
  *

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /***
- * Dibo 拦截器 
+ * 拦截器
  * @author Mazc@dibo.ltd
  * @version 2016年12月6日
  *

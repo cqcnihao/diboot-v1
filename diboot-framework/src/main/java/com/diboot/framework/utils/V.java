@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.*;
 
 /***
- * Dibo Validator 
+ * Validator校验类
  * @author Mazc@dibo.ltd
  * @version 2016年11月24日
  *
