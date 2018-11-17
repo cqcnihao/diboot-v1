@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
  */
 @Configuration
 @EnableScheduling
-public class SchedulerConfiguration extends BaseSchedulerConfigurer {
+public class SchedulerConfig extends BaseSchedulerConfigurer {
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {

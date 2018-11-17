@@ -1,14 +1,16 @@
 package com.diboot.web.config;
 
-import com.diboot.framework.security.BaseUserRealm;
-import com.diboot.framework.security.RetryLimitCredentialsMatcher;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
-import org.apache.shiro.mgt.DefaultSecurityManager;
+import com.diboot.framework.security.BaseJwtAuthorizingRealm;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.mgt.SessionsSecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,21 +23,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Shiro配置
  * @author Mazc@dibo.ltd
  * @version 2018/3/28
- *
  */
 @Configuration
-public class ShiroConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+public class ShiroConfig {
+    private static final Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
      * Shiro的Web过滤器Factory: shiroFilter
      */
-    @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter() {
+    @Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-        shiroFilter.setSecurityManager(securityManager());
+        shiroFilter.setSecurityManager(securityManager);
 
         shiroFilter.setLoginUrl(Cons.URL_LOGIN);
         shiroFilter.setSuccessUrl(Cons.URL_WELCOME);
@@ -54,42 +56,47 @@ public class ShiroConfiguration {
         return shiroFilter;
     }
 
-    @Bean
-    public EhCacheManager cacheManager(){
-        EhCacheManager cacheManager = new EhCacheManager();
-        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-        return cacheManager;
-    }
-
-    /**
-     * 密码Hash校验: MD5散列2次
+    /***
+     * 过滤器定义，具体定义交由shiroFilterFactoryBean，此处仅声明以避免报错
      * @return
      */
     @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher(){
-        return new RetryLimitCredentialsMatcher(cacheManager());
+    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+        return new DefaultShiroFilterChainDefinition();
     }
 
+    /***
+     * Shrio用户认证Realm
+     * @return
+     */
     @Bean
-    public BaseUserRealm userRealm(){
-        BaseUserRealm userRealm = new BaseUserRealm();
-        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-        return userRealm;
+    public Realm realm(){
+        Realm jwtRealm = new BaseJwtAuthorizingRealm();
+        return jwtRealm;
+    }
+
+    /***
+     * 缓存管理类
+     * @return
+     */
+    @Bean
+    public CacheManager cacheManager(){
+        return new MemoryConstrainedCacheManager();
     }
 
     /**
      * Shiro SecurityManager
      */
     @Bean
-    public SecurityManager securityManager(){
-        DefaultSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm());
+    public SessionsSecurityManager securityManager(){
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(realm());
         securityManager.setCacheManager(cacheManager());
         return securityManager;
     }
 
     /**
-     * Shiro生命周期处理器 * @return
+     * Shiro生命周期处理器
      */
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -97,9 +104,7 @@ public class ShiroConfiguration {
     }
 
     /**
-     * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),
-     * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
-     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     * 开启Shiro的注解(如 @RequiresRoles, @RequiresPermissions)
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})

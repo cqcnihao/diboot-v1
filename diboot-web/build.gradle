@@ -88,8 +88,7 @@ dependencies {
     // Apache Shiro Jars
     compile("org.apache.shiro:shiro-core:$shiroVersion",
             "org.apache.shiro:shiro-web:$shiroVersion",
-            "org.apache.shiro:shiro-spring:$shiroVersion",
-            "org.apache.shiro:shiro-ehcache:$shiroVersion"
+            "org.apache.shiro:shiro-spring:$shiroVersion"
     )
 
     // json相关依赖

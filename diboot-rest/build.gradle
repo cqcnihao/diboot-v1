@@ -72,19 +72,15 @@ dependencies {
             "org.apache.commons:commons-lang3:3.8.1",
             "commons-io:commons-io:2.6"
     )
-    
-    // Apache Shiro Jars
-    compile("org.apache.shiro:shiro-core:1.4.0",
-            "org.apache.shiro:shiro-web:1.4.0",
-            "org.apache.shiro:shiro-spring:1.4.0",
-            "org.apache.shiro:shiro-ehcache:1.4.0")
 
-    // json相关依赖
-    compile ('com.alibaba:fastjson:1.2.51')
-
+    // Apache Shiro
+    compile("org.apache.shiro:shiro-spring-boot-web-starter:1.4.0")
     // JWT认证
     compile("com.auth0:java-jwt:3.4.1",
             "io.jsonwebtoken:jjwt:0.9.1")
+
+    // json相关依赖
+    compile ('com.alibaba:fastjson:1.2.51')
 
     // 微信开发组件，需要开发微信时引入
     //compile("com.github.binarywang:weixin-java-mp:3.2.0")
