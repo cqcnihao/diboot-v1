@@ -7,7 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /***
- * Dibo Context Listener 
+ * Context Listener
  * @author Mazc@dibo.ltd
  * @version 2017年3月21日
  *

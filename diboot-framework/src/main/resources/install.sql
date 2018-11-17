@@ -247,7 +247,8 @@ CREATE TABLE `user` (
   KEY `index_user_name` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='系统用户';
 
-INSERT INTO `user` VALUES ('10000', '0', '0', 'admin', '3c5bb3515219c3b3e8e135053c7ff4bb', '26bebdc6e218452786dc3ad7dd45fb0b', '管理员', 'ADMIN', null, null, '/static/img/avatar.jpg', '13012345678', null, 'test@163.com', '', null, null, '0', null, '1', null, '1', null, '2018-08-08 18:18:18');
+-- 初始化系统管理员账号 admin/admin
+INSERT INTO `user` VALUES ('10000', '0', '0', 'admin', '8a341068318427e927cad240373984eb', '26bebdc6e218452786dc3ad7dd45fb0b', '管理员', 'ADMIN', null, null, '/static/img/avatar.jpg', '13012345678', null, 'test@163.com', '', null, null, '0', null, '1', null, '1', null, '2018-08-08 18:18:18');
 
 -- 用户角色
 DROP TABLE IF EXISTS `user_role`;

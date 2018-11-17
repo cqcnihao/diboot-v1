@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /***
- * Dibo 系统配置
+ * 系统默认配置
  * @author Mazc@dibo.ltd
  * @version 2016年12月27日
  *

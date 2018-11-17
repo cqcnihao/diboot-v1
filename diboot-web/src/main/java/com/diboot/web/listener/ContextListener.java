@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContextEvent;
 
 /***
- * Dibo Context Listener 
+ * Context Listener
  * @author Mazc@dibo.ltd
  * @version 2017年3月21日
  *

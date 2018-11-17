@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Set;
 
 /***
- * Dibo Spring配置文件
+ * Spring配置文件
  * @author Mazc@dibo.ltd
  * @version 2016年12月7日
  *

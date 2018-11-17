@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.sql.DataSource;
 
 /***
- * Dibo Spring配置文件 
+ * Spring配置文件
  * @author Mazc@dibo.ltd
  * @version 2016年12月7日
  *

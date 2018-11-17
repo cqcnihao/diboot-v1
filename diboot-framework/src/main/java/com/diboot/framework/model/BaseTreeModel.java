@@ -3,7 +3,7 @@ package com.diboot.framework.model;
 import java.util.List;
 
 /***
- * Dibo Model父类
+ * Model父类
  * @author Mazc@dibo.ltd
  * @version 20161107
  *

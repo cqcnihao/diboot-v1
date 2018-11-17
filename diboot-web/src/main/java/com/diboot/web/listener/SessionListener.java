@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /***
- * Dibo Session Listener 
+ * Session Listener
  * @author Mazc@dibo.ltd
  * @version 2017年3月7日
  *
