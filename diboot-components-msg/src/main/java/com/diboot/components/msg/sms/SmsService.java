@@ -1,10 +1,10 @@
 package com.diboot.components.msg.sms;
 
 /***
- * Dibo 短信发送接口 
+ * 短信发送接口
  * @author Mazc@dibo.ltd
  * @version 2017年1月13日
- * Copyright 2017 www.dibo.ltd
+ *
  */
 public interface SmsService {
 

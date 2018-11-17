@@ -23,7 +23,6 @@ import javax.validation.Valid;
 import java.util.*;
 
 /***
- * Copyright 2016 www.Dibo.ltd
  * 元数据相关操作Controller
  * @author Mazc@dibo.ltd
  * @version v1.0, 2016/08/23

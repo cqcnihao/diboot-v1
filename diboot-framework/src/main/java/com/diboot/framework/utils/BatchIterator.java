@@ -8,7 +8,7 @@ import java.util.List;
  * 集合批次迭代
  * @author Mazc@dibo.ltd
  * @version 2017/5/17
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BatchIterator<E> implements Iterator<List<E>> {
     /**

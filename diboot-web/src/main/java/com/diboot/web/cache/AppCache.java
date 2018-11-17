@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 /***
- * Dibo 常用数据缓存 
+ * 常用数据缓存
  * @author Mazc@dibo.ltd
  * @version 2016年12月7日
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 public class AppCache{

@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /***
- * Dibo 常用查询构建，用于辅助创建criteria map
+ * 常用查询构建类，用于辅助创建criteria map
  * @author Mazc@dibo.ltd
  * @version 2016年12月27日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class Query {
     private static Logger logger = LoggerFactory.getLogger(Query.class);

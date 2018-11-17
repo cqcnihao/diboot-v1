@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/9/22
- * Copyright © www.dibo.ltd
+ *
  */
 @RestController
 public class CustomErrorController implements ErrorController {

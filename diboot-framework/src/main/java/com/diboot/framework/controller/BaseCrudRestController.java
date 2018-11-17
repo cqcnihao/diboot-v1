@@ -23,7 +23,7 @@ import java.util.Map;
  * 增删改查通用管理功能-父类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 @RestController
 public abstract class BaseCrudRestController extends BaseController {

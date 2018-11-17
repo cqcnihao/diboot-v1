@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * 请求时间监控拦截器
  * @author Mazc@dibo.ltd
  * @version 2016年12月6日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class BaseRTMInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LoggerFactory.getLogger(BaseRTMInterceptor.class);

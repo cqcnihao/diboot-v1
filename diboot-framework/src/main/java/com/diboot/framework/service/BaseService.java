@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/5/5
- * Copyright @ www.dibo.ltd
+ *
  */
 public interface BaseService{
 

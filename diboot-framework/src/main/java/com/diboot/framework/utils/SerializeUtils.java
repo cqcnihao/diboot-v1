@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
  * 序列化工具类
  * @author Mazc@dibo.ltd
  * @version 2017/5/26
- * Copyright @ www.dibo.ltd
+ *
  */
 public class SerializeUtils {
 

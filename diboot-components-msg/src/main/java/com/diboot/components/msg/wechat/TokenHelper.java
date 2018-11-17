@@ -14,7 +14,7 @@ import java.util.Map;
  * 微信Token缓存辅助类
  * @author Mazc@dibo.ltd
  * @version 2017/9/14
- * Copyright @ www.dibo.ltd
+ *
  */
 public class TokenHelper {
     private static final Logger logger = LoggerFactory.getLogger(TokenHelper.class);

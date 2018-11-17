@@ -7,10 +7,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 /***
- * Dibo 常用数据缓存 
+ * 常用数据缓存
  * @author Mazc@dibo.ltd
  * @version 2016年12月7日
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 public class AppCache implements ApplicationListener<ContextRefreshedEvent>{

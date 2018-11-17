@@ -4,7 +4,7 @@ package com.diboot.framework.config;
  * 状态码定义
  * @author Mazc@dibo.ltd
  * @version 2017/8/30
- * Copyright @ www.dibo.ltd
+ *
  */
 public enum Status {
     OK(0, "操作成功"),  // 请求处理成功

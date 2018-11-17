@@ -5,10 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /***
- * Dibo 音频处理类
+ * 音频处理类
  * @author Mazc@dibo.ltd
  * @version 2016年11月7日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class AudioHelper {
 	private static final Logger logger = LoggerFactory.getLogger(AudioHelper.class);

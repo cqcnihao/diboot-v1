@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  * 元数据定义
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 public class Metadata extends BaseTreeModel<Metadata>{
     private static final long serialVersionUID  = 1301L;

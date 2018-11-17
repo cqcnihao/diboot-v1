@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * JWT 认证过滤器
  * @author Mazc@dibo.ltd
  * @version 2018/1/6
- * Copyright © www.dibo.ltd
+ *
  */
 public class BaseJwtAuthenticationFilter extends BasicHttpAuthenticationFilter {
     private static final Logger logger =  LoggerFactory.getLogger(BaseJwtAuthenticationFilter.class);

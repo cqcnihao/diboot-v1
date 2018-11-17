@@ -9,7 +9,7 @@ import java.io.Serializable;
  * JSON返回结果
  * @author Mazc@dibo.ltd
  * @version 2017/8/30
- * Copyright @ www.dibo.ltd
+ *
  */
 public class JsonResult implements Serializable {
     private static final long serialVersionUID = 1001L;

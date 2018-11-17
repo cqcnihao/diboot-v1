@@ -29,7 +29,7 @@ import java.util.Map;
  * 消息相关操作Controller
  * @author Mazc@dibo.ltd
  * @version 2017-09-14
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/msg/message")

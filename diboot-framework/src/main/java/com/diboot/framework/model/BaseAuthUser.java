@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 * 用户认证 Model对象定义
 * @author Mazc@dibo.ltd
 * @version 2018-06-08
-* Copyright © www.dibo.ltd
+*
 */
 public class BaseAuthUser extends BaseUser{
 	private static final long serialVersionUID = 200L;

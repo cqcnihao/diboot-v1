@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 /***
- * Dibo Mapper接口父类
+ * Mapper接口父类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 @Component
 public interface BaseMapper {

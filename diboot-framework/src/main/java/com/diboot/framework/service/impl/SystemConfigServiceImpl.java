@@ -16,7 +16,7 @@ import java.util.Map;
 * 系统配置相关操作Service
 * @author Mazc@dibo.ltd
 * @version 2018-06-04
-* Copyright © www.dibo.ltd
+*
 */
 @Service("systemConfigService")
 public class SystemConfigServiceImpl extends BaseServiceImpl implements SystemConfigService {

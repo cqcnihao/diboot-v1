@@ -25,7 +25,7 @@ import java.util.Map;
  * 短信推送接收Controller
  * @author Mazc@dibo.ltd
  * @version 2017/9/15
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/public/msg/pushReceiver")

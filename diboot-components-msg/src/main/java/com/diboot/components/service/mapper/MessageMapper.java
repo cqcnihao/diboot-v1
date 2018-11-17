@@ -9,7 +9,7 @@ import java.util.Map;
  * 消息相关Mapper
  * @author Mazc@dibo.ltd
  * @version 2017-09-14
- * Copyright @ www.dibo.ltd
+ *
  */
 @Mapper
 public interface MessageMapper extends BaseMapper {

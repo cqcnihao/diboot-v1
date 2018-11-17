@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/1/4
- * Copyright © www.dibo.ltd
+ *
  */
 @Controller
 public class LoginAuthController extends BaseController {

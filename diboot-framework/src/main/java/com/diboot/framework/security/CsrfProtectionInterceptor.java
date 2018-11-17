@@ -21,7 +21,7 @@ import java.util.List;
  * CSRF Token拦截器
  * @author Mazc@dibo.ltd
  * @version 2017年11月24日
- * Copyright@www.Dibo.ltd
+ *
  */
 public class CsrfProtectionInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(CsrfProtectionInterceptor.class);

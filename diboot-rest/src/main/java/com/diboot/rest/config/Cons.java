@@ -4,7 +4,7 @@ package com.diboot.rest.config;
  * 常量定义
  * @author Mazc@dibo.ltd
  * @version 2016年12月5日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class Cons {
 

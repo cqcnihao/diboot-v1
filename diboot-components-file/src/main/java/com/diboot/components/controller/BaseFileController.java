@@ -28,7 +28,7 @@ import java.io.FileInputStream;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/9/22
- * Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/file")

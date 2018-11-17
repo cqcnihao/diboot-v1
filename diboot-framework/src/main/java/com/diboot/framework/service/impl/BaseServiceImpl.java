@@ -19,7 +19,7 @@ import java.util.*;
  * CRUD通用接口实现类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
+ *
  */
 @Service
 public abstract class BaseServiceImpl implements BaseService {

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 * Excel列定义
 * @author Mazc@dibo.ltd
 * @version 2017-09-18
-* Copyright @ www.dibo.ltd
+*
 */
 public class ExcelColumn extends BaseModel {
 	private static final long serialVersionUID = -1539079350889067812L;

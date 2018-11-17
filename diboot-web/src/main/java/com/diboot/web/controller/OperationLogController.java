@@ -20,7 +20,7 @@ import java.util.List;
  * 操作日志管理
  * @author Mazc@dibo.ltd
  * @version 2017/4/27
- *  Copyright @ www.dibo.ltd
+ *
  */
 @Controller
 @RequestMapping("/operationLog")

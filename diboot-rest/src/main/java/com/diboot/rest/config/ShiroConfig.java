@@ -2,12 +2,16 @@ package com.diboot.rest.config;
 
 import com.diboot.framework.security.BaseJwtAuthenticationFilter;
 import com.diboot.framework.security.BaseJwtAuthorizingRealm;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.mgt.SessionsSecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
@@ -23,18 +27,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * Shiro配置
  * @author Mazc@dibo.ltd
  * @version 2018/3/28
- * Copyright © www.dibo.ltd
  */
 @Configuration
-public class ShiroConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+public class ShiroConfig {
+    private static final Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
      * Shiro的Web过滤器Factory: shiroFilter
      */
-    @Bean(name = "shiroFilter")
+    @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         //Shiro securityManager
@@ -70,28 +74,42 @@ public class ShiroConfiguration {
         return shiroFilterFactoryBean;
     }
 
-    @Bean(name = "realm")
-    public AuthorizingRealm authorizingRealm(){
-        BaseJwtAuthorizingRealm jwtRealm = new BaseJwtAuthorizingRealm();
+    /***
+     * 过滤器定义，具体定义交由shiroFilterFactoryBean，此处仅声明以避免报错
+     * @return
+     */
+    @Bean
+    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+        return new DefaultShiroFilterChainDefinition();
+    }
+
+    /***
+     * Shrio用户认证Realm
+     * @return
+     */
+    @Bean
+    public Realm realm(){
+        Realm jwtRealm = new BaseJwtAuthorizingRealm();
         return jwtRealm;
     }
 
+    /***
+     * 缓存管理类
+     * @return
+     */
     @Bean
-    public EhCacheManager cacheManager(){
-        System.setProperty("net.sf.ehcache.skipUpdateCheck", "true");
-        EhCacheManager cacheManager = new EhCacheManager();
-        return cacheManager;
+    public CacheManager cacheManager(){
+        return new MemoryConstrainedCacheManager();
     }
 
     /**
      * Shiro SecurityManager
      */
-    @Bean(name = "securityManager")
-    public SecurityManager securityManager() {
+    @Bean
+    public SessionsSecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(authorizingRealm());
+        securityManager.setRealm(realm());
         securityManager.setCacheManager(cacheManager());
-        securityManager.setRememberMeManager(null);
         return securityManager;
     }
 

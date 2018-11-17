@@ -17,7 +17,7 @@ import java.util.List;
  * 任务执行入口类
  * @author Mazc@dibo.ltd
  * @version 2017年11月17日
- * Copyright@www.Dibo.ltd
+ *
  */
 @Component
 public class TaskExecutorManager {

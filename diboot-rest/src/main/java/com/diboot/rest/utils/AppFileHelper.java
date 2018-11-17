@@ -21,7 +21,7 @@ import java.util.UUID;
 /**
  * @author Mazc@dibo.ltd
  * @version 2018/8/31
- * Copyright © www.dibo.ltd
+ *
  */
 public class AppFileHelper extends com.diboot.components.file.FileHelper {
     private static final Logger logger = LogManager.getLogger(AppFileHelper.class);

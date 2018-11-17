@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * 自定义request包装类
  * @author Mazc@dibo.ltd
  * @version 2017年11月25日
- * Copyright@www.Dibo.ltd
+ *
  */
 public class CustomHttpServletRequestWrapper extends HttpServletRequestWrapper {
 	private static final Logger logger = LoggerFactory.getLogger(CustomHttpServletRequestWrapper.class);

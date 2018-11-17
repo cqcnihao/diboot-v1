@@ -7,10 +7,10 @@ import java.sql.Timestamp;
 import java.util.*;
 
 /***
- * Dibo Validator 
+ * Validator校验类
  * @author Mazc@dibo.ltd
  * @version 2016年11月24日
- * Copyright @ www.dibo.ltd
+ *
  */
 public class V {
 	private static final Logger logger = LoggerFactory.getLogger(V.class);

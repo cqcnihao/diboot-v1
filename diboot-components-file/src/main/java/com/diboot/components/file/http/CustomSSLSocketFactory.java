@@ -30,7 +30,7 @@ import java.security.cert.X509Certificate;
  * HttpClient工厂类， 解决HTTPS验证问题
  * @author Mazc@dibo.ltd
  * @version 2017年8月8日
- * Copyright@www.Dibo.ltd
+ *
  */
 public class CustomSSLSocketFactory extends SSLSocketFactory {
     private static final Logger logger = LoggerFactory.getLogger(CustomSSLSocketFactory.class);

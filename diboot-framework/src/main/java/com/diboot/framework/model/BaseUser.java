@@ -11,10 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /***
- * Dibo 用户账号抽象类
+ * 基础用户账号抽象类
  * @author Mazc@dibo.ltd
  * @version 20161107
- * Copyright @ www.dibo.ltd
  */
 public class BaseUser extends BaseModel{
 	private static final long serialVersionUID = 206L;

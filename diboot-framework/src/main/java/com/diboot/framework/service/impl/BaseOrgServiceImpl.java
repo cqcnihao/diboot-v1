@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Mazc@dibo.ltd
  * @version 2017/4/17
- * Copyright @ www.dibo.ltd
+ *
  */
 @Service("baseOrgService")
 public class BaseOrgServiceImpl extends BaseServiceImpl implements BaseOrgService {
