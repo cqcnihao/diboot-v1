@@ -4,13 +4,13 @@ diboot-framework默认是用Shrio进行用户认证，包括登陆和权限认�
 
 ## Shiro相关配置
 ### 初始化shiroFilter
-* 新建ShiroConfiguration类，并添加@Configuration注解
+* 新建ShiroConfig类，并添加@Configuration注解
 * 添加相关的Bean
 
 ```java
 @Configuration
-public class ShiroConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
+public class ShiroConfig {
+    private static final Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     /**
      * Shiro的Web过滤器Factory: shiroFilter

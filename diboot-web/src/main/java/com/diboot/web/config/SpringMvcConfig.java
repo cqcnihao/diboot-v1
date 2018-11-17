@@ -73,7 +73,7 @@ public class SpringMvcConfig implements WebMvcConfigurer, AsyncConfigurer {
 		config.setDriverClassName("com.mysql.jdbc.Driver");
 		// 生产环境参数
 		if(AppConfig.isProductionEnv()){
-			config.setMaximumPoolSize(100);
+			config.setMaximumPoolSize(20);
 		}
 		else{
 			// 开发模式下，用于diboot devtools
