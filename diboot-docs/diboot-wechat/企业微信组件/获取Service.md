@@ -26,6 +26,6 @@ private WxCpServiceFactory wxCpServiceFactory;
 * 根据相应的应用获取对应企业微信的WxCpService实例，如下： 
 
 ```java
-String app = WX_CP_APP.MSG.name();
+String app = Cons.WX_CP_APP.MSG.name();
 WxCpService wxCpService = wxCpServiceFactory.getCpService( app);
 ```
