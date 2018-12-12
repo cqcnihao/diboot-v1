@@ -37,7 +37,7 @@
                 </li>-->
                 <#-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown notifications-menu user user-menu">
-                    <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img alt="" class="user-image" src="${ctx.contextPath}/static/img/avatar.jpg" />
                         <span class="hidden-xs"> ${(Session.user.realname)!"User"} </span>
                         <i class="fa fa-angle-down"></i>

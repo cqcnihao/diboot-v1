@@ -129,7 +129,7 @@ public abstract class BaseServiceImpl implements BaseService {
 		BaseModel oldModel = null;
 		if(getAsyncLogger() != null){
 			oldModel = getModel(model.getPk());
-			// 解决creatorName被覆盖的问题，此修改有可能会导致extData无法被设为空， TODO 后续优化
+			// 解决creatorName被覆盖的问题，此修改有可能会导致extData无法被设为空
 			if(oldModel != null && oldModel.getExtdata() != null && V.isEmpty(model.getExtdata())){
 				model.setExtdata(oldModel.getExtdata());
 			}
@@ -166,13 +166,13 @@ public abstract class BaseServiceImpl implements BaseService {
 			if(getAsyncLogger() != null){
 				BaseUser user = BaseHelper.getCurrentUser();
 				String objFlag = getMapper() != null? getMapper().getClass().getSimpleName() + ".delete() : " : "";
-				String comment = "删除数据: " + objFlag + String.valueOf(pk);
+				String comment = "删除数据: " + objFlag + pk;
 				getAsyncLogger().saveTraceLog(user, TraceLog.OPERATION.DELETE, null, null, null, comment);
 			}
 		}
 		else{
 			String objFlag = getMapper() != null? getMapper().getClass().getSimpleName() + ".delete() : " : "";
-			logger.warn("删除操作失败！"+objFlag + String.valueOf(pk));
+			logger.warn("删除操作失败！"+objFlag + pk);
 		}
 
 		return success;
@@ -214,7 +214,7 @@ public abstract class BaseServiceImpl implements BaseService {
 			Map<String, Object> criteria, int... pages) {
 		criteria = attachPagination(criteria, pages);
 		List<T> list = getMapper().getList(criteria);
-		if(list != null && list.size() > 500){
+		if(list != null && list.size() > 1000){
 			logger.warn("数据查询结果过多，记录数为 "+list.size()+"条，请检查调用是否合理！: criteria="
 					+ (V.notEmpty(criteria) ? criteria.toString() : null));
 		}
@@ -246,7 +246,7 @@ public abstract class BaseServiceImpl implements BaseService {
 		Map<String, Boolean> fields = convertArray2Map(null, loadFields);
 		List<Map<String, Object>> list = getMapper().getMapList(criteria, fields);
 		if(V.notEmpty(list)){
-			if(list.size() > 500){
+			if(list.size() > 1000){
 				logger.warn("数据查询结果过多，记录数为 "+list.size()+"条，请检查调用是否合理！: criteria=" +
 						(V.notEmpty(criteria) ? criteria.toString() : null));
 			}

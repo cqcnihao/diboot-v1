@@ -1,5 +1,11 @@
 # Created by .ignore support plugin (hsz.mobi)
+.idea/
 /.gradle/
-/.idea/
+/*/out/
+/*/build/
+/src/
+.DS_Store
 node_modules/
 _book/
+target/
+null/

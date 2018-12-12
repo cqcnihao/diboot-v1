@@ -4,7 +4,7 @@ module.exports = {
   assetsDir: 'static',
   devServer: {
     disableHostCheck: true,
-    port: 80,
+    port: 9000,
     proxy: {
       '/rest': {
         target: 'http://localhost:8080/rest',

@@ -19,6 +19,8 @@ public class OperationLog extends BaseModel{
         CREATE("创建"), //添加数据
         UPDATE("修改"), //修改数据
         DELETE("删除"), //删除数据
+        IMPORT("导入"), // 导入文件
+        EXPORT("导出"), // 导出文件
         TRIGGER("触发"), // 触发了某些操作
         ERROR("错误"), // 发生错误
         REQUEST("请求"); // 发出请求

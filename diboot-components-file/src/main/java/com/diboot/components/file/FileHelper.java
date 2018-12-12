@@ -1,6 +1,5 @@
 package com.diboot.components.file;
 
-import com.diboot.components.file.excel.ExcelWriter;
 import com.diboot.components.file.http.CustomSSLSocketFactory;
 import com.diboot.framework.config.BaseConfig;
 import com.diboot.framework.config.BaseCons;
@@ -25,7 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * 文件操作辅助类
@@ -528,23 +528,6 @@ public class FileHelper{
 		return false;
 	}
 
-	/***
-	 * 单sheet的excel导出
-	 * @param excelFileName
-	 * @param rows
-	 * @return excel文件路径
-	 * @see ExcelWriter
-	 */
-	public static String generateExcel(String excelFileName, List<LinkedHashMap> rows){
-		ExcelWriter writer = new ExcelWriter(excelFileName);
-		writer.addSheet(excelFileName, rows);
-		if(writer.generate()){
-			return writer.getGeneratedFilePath();
-		}
-		logger.warn("生成excel失败！");
-		return null;
-	}
-
 	/**
 	 * 设置ContentType
 	 * @param fileName
@@ -557,97 +540,6 @@ public class FileHelper{
 			contentType = DEFAULT_CONTEXT_TYPE;
 		}
 		return contentType + ";charset=utf-8";
-	}
-
-	/**
-	 * 根据有序map列表创建excel数据
-	 * @param linkMapList
-	 * @param headers
-	 * @param rows
-	 */
-	public static void buildExcelData(List<LinkedHashMap> linkMapList, List<String> headers, List<String[]> rows){
-		// build headers
-		buildHeaders(linkMapList, headers);
-		// Build rows
-		for (LinkedHashMap map : linkMapList){
-			List<String> rowData = new ArrayList<String>();
-			for (String header : headers){
-				if (map.get(header) != null){
-					String value = String.valueOf(map.get(header));
-					// Make format right
-					if ("false".equals(value)){
-						value = "否";
-					} else if ("true".equals(value)){
-						value = "是";
-					} else if (V.notEmpty(value) && value.contains(":") && value.endsWith(".0")){
-						value = S.substring(value, 0, value.length() - 2);
-					}
-					rowData.add(value);
-				} else {
-					rowData.add("");
-				}
-			}
-
-			rows.add(rowData.toArray(new String[rowData.size()]));
-		}
-	}
-
-	public static void buildHeaders(List<LinkedHashMap> mapList, List<String> headers){
-		// Get max size of map
-		headers.clear();
-		int cnt = 0;
-		for (LinkedHashMap map : mapList){
-			if (map.size() > cnt){
-				cnt = map.size();
-			}
-		}
-		// Build headers
-		for (LinkedHashMap map : mapList){
-			if (map.size() == cnt){
-				Iterator it = map.entrySet().iterator();
-				while (it.hasNext()){
-					Map.Entry<String, String> entry = (Map.Entry) it.next();
-					if (V.isEmpty(headers) || headers.size() < cnt){
-						headers.add(entry.getKey());
-					}
-				}
-				break;
-			}
-		}
-	}
-
-	/**
-	 * 根据有序map列表添加excel的sheet
-	 * @param linkMapList
-	 * @param writer
-	 * @throws Exception
-	 */
-	public static void buildExcelSheet(List<LinkedHashMap> linkMapList, ExcelWriter writer) throws Exception{
-		List<String> headers = new ArrayList<>();
-		List<String[]> rows = new ArrayList<>();
-		buildExcelData(linkMapList, headers, rows);
-		writer.addSheet(headers, rows);
-	}
-
-	/**
-	 * 根据有序map列表创建excel文件
-	 * @param linkMapList
-	 * @param fileName
-	 * @return
-	 * @throws Exception
-	 */
-	public static String buildExcelFile(List<LinkedHashMap> linkMapList, String fileName) throws Exception{
-		ExcelWriter writer = new ExcelWriter(fileName);
-		buildExcelSheet(linkMapList, writer);
-		try{
-			boolean success = writer.generate();
-			if (success){
-			    return writer.getGeneratedFilePath();
-            }
-		} catch (Exception e){
-			logger.error("生成excel文件出错", e);
-		}
-		return null;
 	}
 
 }

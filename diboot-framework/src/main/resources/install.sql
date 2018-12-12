@@ -7,20 +7,21 @@ CREATE TABLE `menu` (
   `parent_id` int(10) DEFAULT NULL COMMENT '上级菜单ID',
   `type` varchar(50) NOT NULL DEFAULT 'PC',
   `application` varchar(20) NOT NULL DEFAULT 'MS' COMMENT '应用',
-  `name` varchar(255) NOT NULL COMMENT '菜单名称',
-  `icon` varchar(255) DEFAULT NULL COMMENT '图标',
-  `link` varchar(255) DEFAULT NULL COMMENT '链接',
+  `name` varchar(100) NOT NULL COMMENT '菜单名称',
+  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
+  `link` varchar(200) DEFAULT NULL COMMENT '链接',
   `sort_id` smallint(4) DEFAULT '999',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COMMENT='菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COMMENT='菜单';
 
 INSERT INTO `menu` VALUES ('90', '0', 'PC', 'MS', '系统管理', 'fa fa-cogs', null, '90');
 INSERT INTO `menu` VALUES ('91', '90', 'PC', 'MS', '系统用户管理', 'fa fa-users', '/user/', '91');
 INSERT INTO `menu` VALUES ('92', '90', 'PC', 'MS', '角色权限管理', 'fa fa-unlock-alt', '/rolemenu/', '92');
-INSERT INTO `menu` VALUES ('93', '90', 'PC', 'MS', '操作日志管理', 'fa fa-mouse-pointer', '/operationLog/', '93');
-INSERT INTO `menu` VALUES ('94', '90', 'PC', 'MS', '元数据管理', 'fa fa-th', '/metadata/', '94');
--- INSERT INTO `menu` VALUES ('95', '90', 'PC', 'MS', '消息记录管理', 'fa fa-envelope-o', '/msg/message/', '95');
--- INSERT INTO `menu` VALUES ('96', '90', 'PC', 'MS', '消息模板管理', 'fa fa-clone', '/msg/messageTmpl/', '96');
+INSERT INTO `menu` VALUES ('93', '90', 'PC', 'MS', '系统配置管理', 'fa fa-cog', '/systemConfig/', '93');
+INSERT INTO `menu` VALUES ('94', '90', 'PC', 'MS', '操作日志管理', 'fa fa-mouse-pointer', '/operationLog/', '94');
+INSERT INTO `menu` VALUES ('95', '90', 'PC', 'MS', '元数据管理', 'fa fa-th', '/metadata/', '95');
+INSERT INTO `menu` VALUES ('96', '90', 'PC', 'MS', '消息记录管理', 'fa fa-envelope-o', '/msg/message/', '96');
+INSERT INTO `menu` VALUES ('97', '90', 'PC', 'MS', '消息模板管理', 'fa fa-clone', '/msg/messageTmpl/', '97');
 
 -- 元数据表
 -- DROP TABLE IF EXISTS `metadata`;
@@ -28,17 +29,18 @@ CREATE TABLE `metadata` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `parent_id` int(10) NOT NULL COMMENT '父ID',
   `type` varchar(50) NOT NULL COMMENT '元数据类型',
-  `item_name` varchar(255) NOT NULL COMMENT '元数据项名称',
-  `item_value` varchar(255) DEFAULT NULL COMMENT '元数据项编码',
-  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
+  `item_name` varchar(100) NOT NULL COMMENT '元数据项名称',
+  `item_value` varchar(200) DEFAULT NULL COMMENT '元数据项编码',
+  `comment` varchar(200) DEFAULT NULL COMMENT '备注',
   `sort_id` smallint(5) NOT NULL DEFAULT '1' COMMENT '排序号',
   `system` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是系统',
   `editable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '可编辑',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_by` int(11) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='元数据';
+  PRIMARY KEY (`id`),
+  KEY `idx_metadata` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COMMENT='元数据';
 
 INSERT INTO `metadata` VALUES ('100', '0', 'ROLE', '系统用户角色', null, '系统登录用户的角色定义元数据', '1', '1', '0', '1', '0', '2016-08-24 21:45:20');
 INSERT INTO `metadata` VALUES ('101', '100', 'ROLE', '系统管理员', 'ADMIN', '所有权限', '1', '1', '1', '1', '0', '2016-08-24 21:45:21');
@@ -63,13 +65,15 @@ CREATE TABLE `auth_user` (
   `password` varchar(32) DEFAULT NULL COMMENT '密码',
   `wechat` varchar(100) DEFAULT NULL COMMENT '微信',
   `openid` varchar(32) DEFAULT NULL COMMENT 'openid',
-  `extdata` varchar(100) DEFAULT NULL COMMENT '扩展JSON',
+  `extdata` varchar(200) DEFAULT NULL COMMENT '扩展JSON',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_by` int(11) DEFAULT '0' COMMENT '创建人ID',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='用户认证';
+  PRIMARY KEY (`id`),
+  KEY `idx_auth_user_u` (`user_type`, `user_id`),
+  KEY `idx_auth_user_k` (`username`, `wechat`, `openid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8 COMMENT='用户认证';
 
 -- excel导入列对应关系
 -- DROP TABLE IF EXISTS `excel_column`;
@@ -83,23 +87,25 @@ CREATE TABLE `excel_column` (
   `validation` varchar(50) DEFAULT NULL COMMENT '校验',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='excel列定义';
+  PRIMARY KEY (`id`),
+  KEY `idx_excel_column` (`model_class`)
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COMMENT='excel列定义';
 
 -- excel导入文件与数据的对应关系
 DROP TABLE IF EXISTS `excel_import_record`;
 CREATE TABLE `excel_import_record` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `file_uuid` varchar(32) DEFAULT NULL COMMENT '文件ID',
-  `rel_obj_type` varchar(100) DEFAULT NULL COMMENT '关联类型',
-  `rel_obj_id` bigint(18) unsigned DEFAULT NULL COMMENT '关联ID',
-  `rel_obj_uid` varchar(32) DEFAULT NULL COMMENT '关联UUID',
-  `extdata` varchar(100) DEFAULT NULL COMMENT '扩展JSON',
-  `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
-  `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人ID',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='导入记录';
+ `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+ `file_uuid` varchar(32) DEFAULT NULL COMMENT '文件ID',
+ `rel_obj_type` varchar(100) DEFAULT NULL COMMENT '关联类型',
+ `rel_obj_id` bigint(18) unsigned DEFAULT NULL COMMENT '关联ID',
+ `rel_obj_uid` varchar(32) DEFAULT NULL COMMENT '关联UUID',
+ `extdata` varchar(200) DEFAULT NULL COMMENT '扩展JSON',
+ `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
+ `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人ID',
+ `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+ PRIMARY KEY (`id`),
+ KEY `idx_excel_import_record` (`rel_obj_type`, `rel_obj_id`, `rel_obj_uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8 COMMENT='导入记录';
 
 -- 上传文件表
 -- DROP TABLE IF EXISTS `file`;
@@ -108,21 +114,22 @@ CREATE TABLE `file` (
   `rel_obj_type` varchar(50) DEFAULT NULL COMMENT '关联对象类型',
   `rel_obj_id` bigint(18) DEFAULT NULL COMMENT '关联对象ID',
   `name` varchar(100) NOT NULL COMMENT '文件名',
-  `link` varchar(255) DEFAULT NULL COMMENT '文件链接',
-  `path` varchar(255) NOT NULL COMMENT '路径',
-  `file_type` varchar(255) DEFAULT NULL COMMENT '文件类型',
+  `link` varchar(200) DEFAULT NULL COMMENT '文件链接',
+  `path` varchar(200) NOT NULL COMMENT '路径',
+  `file_type` varchar(50) DEFAULT NULL COMMENT '文件类型',
   `data_count` smallint(5) DEFAULT '0' COMMENT '数据量',
   `size` int(11) DEFAULT NULL COMMENT '大小',
   `status` char(1) NOT NULL DEFAULT 'S' COMMENT '保存状态',
-  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
-  `extdata` varchar(255) DEFAULT NULL COMMENT '扩展属性',
+  `comment` varchar(200) DEFAULT NULL COMMENT '备注',
+  `extdata` varchar(200) DEFAULT NULL COMMENT '扩展属性',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '有效性',
   `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文件记录';
+  PRIMARY KEY (`uuid`),
+  KEY `idx_file` (`rel_obj_type`, `rel_obj_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件记录';
 
--- 操作日志 
+-- 操作日志
 -- DROP TABLE IF EXISTS `operation_log`;
 CREATE TABLE `operation_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -130,28 +137,29 @@ CREATE TABLE `operation_log` (
   `user_type` varchar(16) NOT NULL DEFAULT 'User' COMMENT '用户类型',
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
   `operation` varchar(32) NOT NULL COMMENT '操作',
-  `request_url` varchar(255) DEFAULT NULL COMMENT '请求URL',
-  `comment` varchar(255) DEFAULT NULL COMMENT '系统备注',
+  `request_url` varchar(200) DEFAULT NULL COMMENT '请求URL',
+  `comment` varchar(200) DEFAULT NULL COMMENT '系统备注',
   `rel_obj_type` varchar(32) DEFAULT NULL COMMENT '操作对象',
   `rel_obj_id` varchar(32) DEFAULT NULL COMMENT '操作对象ID',
-  `rel_obj_data` varchar(512) DEFAULT NULL COMMENT '关联数据',
+  `rel_obj_data` varchar(500) DEFAULT NULL COMMENT '关联数据',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '有效',
-  `extdata` varchar(255) NOT NULL COMMENT '扩展',
+  `extdata` varchar(200) NOT NULL COMMENT '扩展',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `index_operate_log` (`rel_obj_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志';
+  KEY `idx_operate_log_o` (`rel_obj_type`, `rel_obj_id`),
+  KEY `idx_operate_log_u` (`user_type`, `user_id`, `operation`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- 角色菜单表
 DROP TABLE IF EXISTS `role_menu`;
 CREATE TABLE `role_menu` (
   `role` varchar(50) NOT NULL COMMENT '角色',
   `menu_id` int(11) NOT NULL COMMENT '菜单'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色菜单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色菜单';
 
 -- 角色菜单配置
 INSERT INTO `role_menu` VALUES ('OPERATOR', '90');
-INSERT INTO `role_menu` VALUES ('OPERATOR', '93');
+INSERT INTO `role_menu` VALUES ('OPERATOR', '94');
 
 -- 系统配置表
 -- DROP TABLE IF EXISTS `system_config`;
@@ -161,7 +169,7 @@ CREATE TABLE `system_config` (
   `rel_obj_id` bigint(11) unsigned NOT NULL COMMENT '关联数据',
   `category` varchar(100) NOT NULL COMMENT '类别',
   `subcategory` varchar(100) DEFAULT NULL COMMENT '子类别',
-  `extdata` varchar(1024) DEFAULT NULL COMMENT '扩展JSON',
+  `extdata` varchar(500) DEFAULT NULL COMMENT '扩展JSON',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人ID',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -194,7 +202,8 @@ CREATE TABLE `timer_task` (
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_by` int(11) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_timer_task_o` (`business_type`, `business_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='定时任务';
 
 -- 跟踪日志
@@ -205,15 +214,16 @@ CREATE TABLE `trace_log` (
   `user_type` varchar(16) NOT NULL DEFAULT 'User' COMMENT '用户类型',
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
   `operation` varchar(32) NOT NULL COMMENT '操作',
-  `request_url` varchar(255) DEFAULT NULL COMMENT '请求URL',
-  `comment` varchar(255) DEFAULT NULL COMMENT '操作备注',
+  `request_url` varchar(200) DEFAULT NULL COMMENT '请求URL',
+  `comment` varchar(200) DEFAULT NULL COMMENT '操作备注',
   `rel_obj_type` varchar(32) DEFAULT NULL COMMENT '操作对象',
   `rel_obj_id` varchar(32) DEFAULT NULL COMMENT '操作对象ID',
   `rel_obj_data` varchar(5120) DEFAULT NULL COMMENT '关联数据',
-  `extdata` varchar(255) DEFAULT NULL COMMENT '扩展',
+  `extdata` varchar(200) DEFAULT NULL COMMENT '扩展',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `index_operate_log` (`rel_obj_id`)
+  KEY `idx_operate_log_o` (`rel_obj_type`, `rel_obj_id`),
+  KEY `idx_operate_log_u` (`user_type`, `user_id`, `operation`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='跟踪日志';
 
 -- 系统用户表
@@ -229,25 +239,24 @@ CREATE TABLE `user` (
   `roles` varchar(100) NOT NULL COMMENT '角色',
   `position` varchar(50) DEFAULT NULL COMMENT '职位',
   `gender` char(1) DEFAULT NULL COMMENT '性别',
-  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
+  `avatar` varchar(200) DEFAULT NULL COMMENT '头像',
   `phone` varchar(20) DEFAULT NULL COMMENT '手机号码',
   `telephone` varchar(20) DEFAULT NULL COMMENT '座机',
   `email` varchar(100) DEFAULT NULL COMMENT 'Email',
   `wechat` varchar(100) DEFAULT NULL COMMENT '微信',
   `openid` varchar(32) DEFAULT NULL COMMENT '微信openid',
-  `access_token` varchar(255) DEFAULT NULL COMMENT 'token',
+  `access_token` varchar(100) DEFAULT NULL COMMENT 'token',
   `fail_count` smallint(3) NOT NULL DEFAULT '0' COMMENT '登录失败次数',
   `expired_time` timestamp NULL DEFAULT NULL COMMENT '过期时间',
   `enabled` tinyint(1) NOT NULL DEFAULT '0' COMMENT '账号状态',
-  `extdata` varchar(255) DEFAULT NULL COMMENT 'JSON扩展',
+  `extdata` varchar(200) DEFAULT NULL COMMENT 'JSON扩展',
   `active` tinyint(1) DEFAULT '1' COMMENT '有效标记',
   `create_by` int(11) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `index_user_name` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='系统用户';
+  KEY `idx_user_k` ( `username`, `wechat`, `openid`)
+) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
--- 初始化系统管理员账号 admin/admin
 INSERT INTO `user` VALUES ('10000', '0', '0', 'admin', '8a341068318427e927cad240373984eb', '26bebdc6e218452786dc3ad7dd45fb0b', '管理员', 'ADMIN', null, null, '/static/img/avatar.jpg', '13012345678', null, 'test@163.com', '', null, null, '0', null, '1', null, '1', null, '2018-08-08 18:18:18');
 
 -- 用户角色
@@ -256,7 +265,7 @@ CREATE TABLE `user_role` (
   `user_id` int(11) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`,`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户角色';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色';
 
 INSERT INTO `user_role` VALUES ('10000', 'ADMIN');
 
@@ -265,20 +274,22 @@ INSERT INTO `user_role` VALUES ('10000', 'ADMIN');
 CREATE TABLE `organization` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `parent_id` int(11) NOT NULL DEFAULT 0 COMMENT '上级单位ID',
-  `name` varchar(255) NOT NULL COMMENT '名称',
+  `name` varchar(100) NOT NULL COMMENT '名称',
   `short_name` varchar(50) NOT NULL COMMENT '简称',
-  `logo` varchar(255) DEFAULT NULL COMMENT 'Logo',
-  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  `logo` varchar(200) DEFAULT NULL COMMENT 'Logo',
+  `address` varchar(200) DEFAULT NULL COMMENT '地址',
   `telphone` varchar(20) DEFAULT NULL COMMENT '电话',
   `email` varchar(50) DEFAULT NULL COMMENT 'Email',
   `fax` varchar(50) DEFAULT NULL COMMENT '传真',
-  `website` varchar(255) DEFAULT NULL COMMENT '网址',
-  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
+  `website` varchar(200) DEFAULT NULL COMMENT '网址',
+  `comment` varchar(200) DEFAULT NULL COMMENT '备注',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_by` int(11) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='组织单位';
+  PRIMARY KEY (`id`),
+  KEY `idx_organization_pid` (`parent_id`),
+  KEY `idx_organization_name` (`name`, `short_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8 COMMENT='组织单位';
 
 -- 单位样例数据
 INSERT INTO `organization` VALUES ('100000', '0', '苏州帝博信息技术有限公司', '帝博信息', '', '江苏苏州', '0512-12345678', 'service@dibo.ltd', '', 'www.dibo.ltd', 'Diboot', '1', null, '2018-08-08 18:18:18');

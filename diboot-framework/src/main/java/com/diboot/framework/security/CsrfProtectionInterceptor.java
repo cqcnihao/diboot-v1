@@ -69,7 +69,7 @@ public class CsrfProtectionInterceptor extends HandlerInterceptorAdapter{
 		}
 		for(String url : ignoreUrls){
 			if(V.notEmpty(url) && url.endsWith("*")){
-				url = S.replaceAll(url, "*", "");
+				url = url.replaceAll("\\*", "");
 			}
 		}
 		this.ignoreUrls = ignoreUrls;

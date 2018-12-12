@@ -47,7 +47,7 @@ import java.util.Set;
 @Configuration
 @EnableAutoConfiguration
 @EnableTransactionManagement(proxyTargetClass=true)
-@ComponentScan(basePackages = {"com.diboot"})
+@ComponentScan(basePackages={"com.diboot"})
 @MapperScan(basePackages={"com.diboot.**.mapper"})
 public class SpringMvcConfig implements WebMvcConfigurer{
     private static final Logger logger = LoggerFactory.getLogger(SpringMvcConfig.class);
@@ -62,15 +62,16 @@ public class SpringMvcConfig implements WebMvcConfigurer{
         config.setJdbcUrl(BaseConfig.getProperty("datasource.url"));
         config.setUsername(BaseConfig.getProperty("datasource.username"));
         config.setPassword(BaseConfig.getProperty("datasource.password"));
-        config.setDriverClassName("com.mysql.jdbc.Driver");
+        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         // 生产环境参数
         if(AppConfig.isProductionEnv()){
             config.setMaximumPoolSize(20);
         }
         else{
-            // 开发模式下，用于diboot devtools
-            config.setMaximumPoolSize(10);
+            config.setMaximumPoolSize(5);
+            // 开发环境下启用diboot devtools
             config.addDataSourceProperty("useInformationSchema", true);
+            config.addDataSourceProperty("nullCatalogMeansCurrent", true);
         }
         return new HikariDataSource(config);
     }

@@ -23,7 +23,7 @@
                 <SizeBasedTriggeringPolicy size="20 MB"/>
             </Policies>
             <!--自动删除超过15天的日志压缩文件-->
-            <DefaultRolloverStrategy>
+            <DefaultRolloverStrategy max="20">
                 <Delete basePath="${LOG_PATH}" maxDepth="2">
                     <IfFileName glob="${LOG_FILENAME}_*_*.log"/>
                     <IfLastModified age="15d"/>
@@ -31,31 +31,30 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
-        <!-- 异常日志记录
+        <!-- 异常日志记录 -->
         <RollingFile name="ErrorRollingFile" fileName="${LOG_PATH}/${LOG_FILENAME}_error.log"
-                     filePattern="${LOG_PATH}/${LOG_FILENAME}_error_%d{MMdd}.log">
+                     filePattern="${LOG_PATH}/${LOG_FILENAME}_error_%d{MMdd}_%i.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="20 MB"/>
             </Policies>
-            <DefaultRolloverStrategy>
+            <DefaultRolloverStrategy max="20">
                 <Delete basePath="${LOG_PATH}" maxDepth="2">
-                    <IfFileName glob="${LOG_FILENAME}_*_*.log"/>
+                    <IfFileName glob="${LOG_FILENAME}_error_*_*.log"/>
                     <IfLastModified age="15d"/>
                 </Delete>
             </DefaultRolloverStrategy>
-        </RollingFile>-->
+        </RollingFile>
     </Appenders>
 
     <Loggers>
         <!-- 开启异步输出 -->
         <AsyncLogger name="com.yourpackage" level="info">
             <AppenderRef ref="DefaultRollingFile" />
-            <!--<AppenderRef ref="ErrorRollingFile" level="warn"/>-->
         </AsyncLogger>
-        <Root level="info">
-            <AppenderRef ref="DefaultRollingFile" />
+        <Root level="error">
+            <AppenderRef ref="ErrorRollingFile" level="error"/>
         </Root>
     </Loggers>
 </Configuration>

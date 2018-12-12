@@ -109,11 +109,11 @@ public class WxMpMemberCardServiceImpl extends WxMpCardServiceImpl implements Wx
                 "                    \"type\": \"DATE_TYPE_PERMANENT\"\n" +
                 "                },\n";
         if (WxMemberCardInfo.DATE_TYPE.CUSTOM.name().equalsIgnoreCase(model.getDateType()) && model.getDateBeginTimestamp() != null && model.getDateEndTimeStamp() != null){            dateInfoStr =
-            dateInfoStr = "\"date_info\": {\n" +
-            "                    \"type\": \"DATE_TYPE_FIX_TIME_RANGE\",\n" +
-            "                    \"begin_timestamp\": " + model.getDateBeginTimestamp() + ",\n" +
-            "                    \"end_timestamp\": " + model.getDateEndTimeStamp() + "\n" +
-            "                },\n";
+                dateInfoStr = "\"date_info\": {\n" +
+                        "                    \"type\": \"DATE_TYPE_FIX_TIME_RANGE\",\n" +
+                        "                    \"begin_timestamp\": " + model.getDateBeginTimestamp() + ",\n" +
+                        "                    \"end_timestamp\": " + model.getDateEndTimeStamp() + "\n" +
+                        "                },\n";
 
         }
 
@@ -158,7 +158,7 @@ public class WxMpMemberCardServiceImpl extends WxMpCardServiceImpl implements Wx
 //				"  piby4vce3AtaPu6cIhBHkt6IjlkY9YnDsfw/0\"\n" +
 //				"                   ]\n" +
                 "               }\n" +
-				"               " + textImageListStr +
+                "               " + textImageListStr +
                 "           },\n" +
                 "            \"supply_bonus\": false,\n" +
                 "            \"supply_balance\": false,\n" +

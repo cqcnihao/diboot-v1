@@ -72,7 +72,7 @@ public class PropertiesUtils {
             // 如果是默认配置，读取不到再尝试从当前profile配置中读取
             String profile = getConfigValueFromPropFile("spring.profiles.active", DEFAULT_PROPERTIES_NAME);
             if(V.notEmpty(profile)){
-                value = getConfigValueFromPropFile(key, S.replaceFirst(DEFAULT_PROPERTIES_NAME, "\\.", "-"+profile+"."));
+                value = getConfigValueFromPropFile(key, S.substringBeforeLast(DEFAULT_PROPERTIES_NAME, ".") + "-"+profile+".properties");
             }
         }
         if(value == null){

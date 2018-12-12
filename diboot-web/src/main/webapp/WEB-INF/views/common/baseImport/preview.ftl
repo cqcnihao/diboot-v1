@@ -1,7 +1,7 @@
 <#include "../../include/head.ftl">
 <body class="${bodyClass}">
 <@wrapper>
-	<@location loc1="${modelName}管理" loc1url="${ctx.contextPath}/${indexPageUrl}/"
+	<@location loc1="${modelName}上传" loc1url="${ctx.contextPath}/${indexPageUrl}/"
 	loc2="上传数据预览" back=true/>
 	<div class="content">
 		<@portlet>

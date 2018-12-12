@@ -6,7 +6,7 @@
     <@portlet>
         <@portletTitle title="新建定时任务" icon="fa-plus">
             <div class="tools">
-                <a href="javascript:" class="collapse"> </a>
+                <a href="javascript:;" class="collapse"> </a>
             </div>
         </@portletTitle>
         <#include "_form.ftl">

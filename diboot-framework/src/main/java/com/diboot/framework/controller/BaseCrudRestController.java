@@ -61,7 +61,10 @@ public abstract class BaseCrudRestController extends BaseController {
 		modelMap.addAttribute("pagination", pagination);
 
 		if(modelMap.get("modelList") == null){
-			List<? extends BaseModel> modelList = pageSize == null? getService().getModelList(criteria, pageIndex) : getService().getModelList(criteria, pageIndex, pageSize);
+			List<? extends BaseModel> modelList = null;
+			if(totalCount > 0){
+				modelList = pageSize == null? getService().getModelList(criteria, pageIndex) : getService().getModelList(criteria, pageIndex, pageSize);
+			}
 			modelMap.addAttribute(MODEL_LIST, modelList);
 		}
 		// 附加更多属性
@@ -126,7 +129,7 @@ public abstract class BaseCrudRestController extends BaseController {
 				asyncLogger.saveOperationLog(user, OperationLog.OPERATION.CREATE, model);
 			}
 			// 组装返回结果
-			Map<String, Object> data = new HashMap<String, Object>(4);
+			Map<String, Object> data = new HashMap<>(4);
 			data.put(BaseModel.F.id, model.getPk());
 			return new JsonResult(Status.OK, data);
         }
@@ -165,7 +168,7 @@ public abstract class BaseCrudRestController extends BaseController {
 				asyncLogger.saveOperationLog(user, OperationLog.OPERATION.UPDATE, model);
 			}
 			// 组装返回结果
-			Map<String, Object> data = new HashMap<String, Object>(4);
+			Map<String, Object> data = new HashMap<>(4);
 			data.put(BaseModel.F.id, model.getId());
 			return new JsonResult(Status.OK, data);
         }
@@ -203,7 +206,7 @@ public abstract class BaseCrudRestController extends BaseController {
 					asyncLogger.saveOperationLog(user, OperationLog.OPERATION.DELETE, model);
 				}
 				logger.info("删除操作成功，model="+model.getClass().getSimpleName()+", id="+id);
-				Map<String, Object> map = new HashMap<String, Object>(4);
+				Map<String, Object> map = new HashMap<>(4);
 				map.put(BaseModel.F.id, id);
 				return new JsonResult(Status.OK, map);
 			}

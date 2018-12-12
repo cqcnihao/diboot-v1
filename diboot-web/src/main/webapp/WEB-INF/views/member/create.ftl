@@ -8,7 +8,7 @@
     <@portlet>
         <@portletTitle title="新建学员信息" icon="fa-plus">
             <div class="tools">
-                <a href="javascript:" class="collapse"> </a>
+                <a href="javascript:;" class="collapse"> </a>
             </div>
         </@portletTitle>
         <#include "_form.ftl">

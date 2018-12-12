@@ -23,6 +23,6 @@ export function date2string(val, format) {
 }
 
 export function datetime2string(val, format) {
-  format = format === undefined ? 'YYYY-MM-DD h:mm' : format;
+  format = format === undefined ? 'YYYY-MM-DD HH:mm' : format;
   return moment(val).format(format);
 }

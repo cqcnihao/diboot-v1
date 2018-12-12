@@ -41,7 +41,7 @@ public class SheetWrapper implements Serializable{
 			}
 		}
 		// 构造header
-		this.headers = new ArrayList<String>();
+		this.headers = new ArrayList<>();
 		LinkedHashMap tempMap = dataRows.get(maxKeysIndex);
 		for (Iterator it = tempMap.keySet().iterator(); it.hasNext();){
 			Object key = it.next();

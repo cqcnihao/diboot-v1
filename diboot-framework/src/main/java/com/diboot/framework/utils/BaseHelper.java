@@ -102,7 +102,7 @@ public class BaseHelper {
 	public static String getRequestMappingURI(HttpServletRequest request){
 		String contextPath = request.getContextPath();
 		if(V.notEmpty(contextPath)){
-			return S.replaceFirst(request.getRequestURI(), contextPath, "");
+			return S.replace(request.getRequestURI(), contextPath, "");
 		}
 		return request.getRequestURI();
 	}

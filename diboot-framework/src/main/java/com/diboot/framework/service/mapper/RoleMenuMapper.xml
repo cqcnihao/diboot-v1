@@ -28,7 +28,7 @@
 	</select>
 
 	<!-- 批量创建记录 -->
-	<insert id="batchCreate" parameterType="java.util.List">
+	<insert id="batchCreate" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO role_menu(role, menu_id)
 		VALUES
 		<foreach collection="list" item="model" separator=",">
@@ -80,7 +80,7 @@
 		DELETE FROM role_menu WHERE role=#{role, jdbcType=VARCHAR}
 	</delete>
 
-	<insert id="createMenu" parameterType="com.diboot.framework.model.BaseMenu">
+	<insert id="createMenu" parameterType="com.diboot.framework.model.BaseMenu" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO menu(
 			parent_id, type, name, icon, link, sort_id
 		)

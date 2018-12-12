@@ -1,9 +1,3 @@
-<p align="center">
-    <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
-        <img src="https://img.shields.io/hexpm/l/plug.svg">
-    </a>
-</p>
-
 # diboot 基础组件及基础项目介绍
 此仓库是diboot相关的基础框架组件和web/rest项目的基础代码仓库，如果您需要: 
  > 使用Diboot和Diboot开发助理，直接从 [生成初始项目](https://www.diboot.com/g/) 开始

@@ -8,4 +8,5 @@ include 'diboot-wechat-mp'
 include 'diboot-wechat-open'
 include 'diboot-common'
 include 'diboot-web'
+include 'diboot-web-boot'
 

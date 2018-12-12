@@ -22,7 +22,8 @@ CREATE TABLE `message` (
   `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `index_message` (`business_type`,`business_id`)
+  KEY `idx_message_b` (`tmpl_id`, `business_type`,`business_id`),
+  KEY `idx_message_u` (`sender`,`receiver`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000001 DEFAULT CHARSET=utf8mb4 COMMENT='消息';
 
 -- 消息模板
@@ -44,5 +45,5 @@ CREATE TABLE `message_tmpl` (
   `create_by` int(11) NOT NULL DEFAULT '0' COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `index_message_tmpl` (`code`,`business_id`)
+  KEY `idx_message_tmpl` (`code`, `msg_type`, `business_type`, `business_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COMMENT='消息模板';

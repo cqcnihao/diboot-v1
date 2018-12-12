@@ -1,232 +1,152 @@
 package com.diboot.components.file.excel;
 
 import com.diboot.components.file.FileHelper;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
+import com.diboot.framework.utils.S;
+import com.diboot.framework.utils.V;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /***
- * Excel Writer: 生成Excel适用
+ * Excel Writer: 生成Excel
  * @author Mazc@dibo.ltd
  * @version 20161107
- *
  */
 public class ExcelWriter {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelWriter.class);
-	/**
-	 * 文件名
-	 */
-	private String fileName;
-	/**
-	 * 全路径
-	 */
-	private String fullPath;
 
-	/**
-	 * sheet列表
+	/***
+	 * 生成单sheet的excel文件
+	 * @param excelFileName
+	 * @param rows List<LinkedHashMap> 或者 List<String[]>
+	 * @return excel文件路径
+	 * @see ExcelFile
 	 */
-	private List<SheetWrapper> sheetList = null;
-	
-	public ExcelWriter(String fileName){
-		this.fileName = fileName;
-		sheetList = new ArrayList<SheetWrapper>();
+	public static String generateExcel(String excelFileName, List rows){
+		ExcelFile excelFile = new ExcelFile(excelFileName);
+		excelFile.addSheet(S.substringBefore(FileHelper.getFileName(excelFileName), "\\."), rows);
+		if(excelFile.generate()){
+			return excelFile.getGeneratedFilePath();
+		}
+		logger.warn("生成excel失败！");
+		return null;
 	}
 
 	/***
-	 * 添加新的Sheet
-	 * @param sheetName
-	 * @param dataRows
+	 * 生成多sheet的excel文件
+	 * @param excelFileName
+	 * @param sheetMap
+	 * @return excel文件路径
+	 * @see ExcelFile
 	 */
-	public void addSheet(String sheetName, List<LinkedHashMap> dataRows){
-		SheetWrapper sheet = new SheetWrapper(dataRows);
-		sheet.setSheetName(sheetName);
-		sheetList.add(sheet);
+	public static String generateExcel(String excelFileName, Map<String, List<String[]>> sheetMap){
+		ExcelFile excelFile = new ExcelFile(excelFileName);
+		if(V.notEmpty(sheetMap)){
+			for(Map.Entry<String, List<String[]>> entry : sheetMap.entrySet()){
+				excelFile.addSheet(entry.getKey(), entry.getValue());
+			}
+		}
+		if(excelFile.generate()){
+			return excelFile.getGeneratedFilePath();
+		}
+		logger.warn("生成excel失败！");
+		return null;
 	}
 
-	/***
-	 * 添加新的Sheet
+	/**
+	 * 根据有序map列表创建excel数据
+	 * @param linkMapList
 	 * @param headers
 	 * @param rows
 	 */
-	public void addSheet(List<String> headers, List<String[]> rows){
-		SheetWrapper sheet = new SheetWrapper(headers, rows);
-		sheetList.add(sheet);
+	public static void buildExcelData(List<LinkedHashMap> linkMapList, List<String> headers, List<String[]> rows){
+		// build headers
+		buildHeaders(linkMapList, headers);
+		// Build rows
+		for (LinkedHashMap map : linkMapList){
+			List<String> rowData = new ArrayList<String>();
+			for (String header : headers){
+				if (map.get(header) != null){
+					String value = String.valueOf(map.get(header));
+					// Make format right
+					if ("false".equals(value)){
+						value = "否";
+					} else if ("true".equals(value)){
+						value = "是";
+					} else if (V.notEmpty(value) && value.contains(":") && value.endsWith(".0")){
+						value = S.substring(value, 0, value.length() - 2);
+					}
+					rowData.add(value);
+				} else {
+					rowData.add("");
+				}
+			}
+			rows.add(rowData.toArray(new String[rowData.size()]));
+		}
 	}
 
 	/***
-	 * 添加新的Sheet
+	 * 由全部数据的mapList中提取Excel的表头 (提取mapList的key全集)
+	 * @param mapList
 	 * @param headers
-	 * @param rows
-	 * @param sheetName
 	 */
-	public void addSheet(String sheetName, List<String> headers, List<String[]> rows){
-		SheetWrapper sheet = new SheetWrapper(headers, rows);
-		sheet.setSheetName(sheetName);
-		sheetList.add(sheet);
-	}
-
-	/****
-	 * 生成Excel（多Sheet）
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean generate(){
-		// 补齐后缀
-		if(!this.fileName.contains(".")){
-			this.fileName += ".xls";
+	public static void buildHeaders(List<LinkedHashMap> mapList, List<String> headers){
+		// Get max size of map
+		headers.clear();
+		int cnt = 0;
+		for (LinkedHashMap map : mapList){
+			if (map.size() > cnt){
+				cnt = map.size();
+			}
 		}
-		// 访问路径
-		String accessPath = FileHelper.getFileStoragePath(this.fileName);
-		// 全路径
-		String fullPath = FileHelper.getFileStorageDirectory() + accessPath;
-		// 生成xls文件
-		return generateXlsFile(fullPath);
-	}
-
-	/****
-	 * 生成Excel（多Sheet）
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean generate2Path(String path){
-		// 补齐后缀
-		if(!this.fileName.contains(".")){
-			this.fileName += ".xls";
-		}
-		String fullPath = path + this.fileName;
-		// 生成xls文件
-		return generateXlsFile(fullPath);
-	}
-
-	/***
-	 * 获取生成后的文件路径
-	 * @return
-	 */
-	public String getGeneratedFilePath(){
-		return fullPath;
-	}
-
-	private boolean generateXlsFile(String fullPath){
-		OutputStream stream = null;
-		HSSFWorkbook wb = null;
-		try {
-			FileHelper.makeDirectory(fullPath);
-			wb = generateXls(sheetList); //TODO xlsx
-			//创建文件流
-			stream = new FileOutputStream(fullPath);
-			//写入数据
-			wb.write(stream);
-
-			// 设置路径
-			this.fullPath = fullPath;
-			return true;
-		}
-		catch (Exception e) {
-			logger.error("导出excel文件出错", e);
-			return false;
-		}
-		finally {
-			//关闭文件流
-			if(stream != null || wb != null){
-				try{
-					stream.close();
-					wb.close();
+		// Build headers
+		for (LinkedHashMap map : mapList){
+			if (map.size() == cnt){
+				Iterator it = map.entrySet().iterator();
+				while (it.hasNext()){
+					Map.Entry<String, String> entry = (Map.Entry) it.next();
+					if (V.isEmpty(headers) || headers.size() < cnt){
+						headers.add(entry.getKey());
+					}
 				}
-				catch (Exception e){
-					logger.warn("关闭文件流异常", e);
-				}
+				break;
 			}
 		}
 	}
 
-	/***
-	 * 生成03-07格式的Excel
-	 * @param sheets
+	/**
+	 * 根据有序map列表添加excel的sheet
+	 * @param linkMapList
+	 * @param excelFile
+	 * @throws Exception
+	 */
+	public static void buildExcelSheet(ExcelFile excelFile, List<LinkedHashMap> linkMapList) throws Exception{
+		List<String> headers = new ArrayList<>();
+		List<String[]> rows = new ArrayList<>();
+		buildExcelData(linkMapList, headers, rows);
+		excelFile.addSheet(headers, rows);
+	}
+
+	/**
+	 * 根据有序map列表创建excel文件
+	 * @param fileName
+	 * @param linkMapList
 	 * @return
 	 * @throws Exception
 	 */
-	private static HSSFWorkbook generateXls(List<SheetWrapper> sheets) throws Exception{
-		if(sheets == null){
-			return null;
-		}
-		HSSFWorkbook wb = new HSSFWorkbook();
-		int sheetIndex = 1;
-		for(SheetWrapper wrapper : sheets){
-			String sheetName = wrapper.getSheetName();
-			if(StringUtils.isBlank(sheetName)){
-				sheetName = "sheet"+sheetIndex++;
+	public static String buildExcelFile(String fileName, List<LinkedHashMap> linkMapList) throws Exception{
+		ExcelFile excelFile = new ExcelFile(fileName);
+		buildExcelSheet(excelFile, linkMapList);
+		try{
+			boolean success = excelFile.generate();
+			if (success){
+				return excelFile.getGeneratedFilePath();
 			}
-			//创建sheet对象   
-	        HSSFSheet sheet = wb.createSheet(sheetName);  
-	        //添加表头  
-	        HSSFRow row = sheet.createRow(0);
-	        // 设置样式
-	        HSSFCellStyle headerCellStyle = buildHeaderStyle(wb); // 样式对象      
-	        
-	        //创建第一行    
-	        HSSFCell cell = null;
-	        for(int i=0; i<wrapper.getHeaders().size(); i++){
-	            cell = row.createCell(i);
-	            cell.setCellValue(wrapper.getHeaders().get(i));
-	            cell.setCellStyle(headerCellStyle);
-
-				HSSFCellStyle bodyCellStyle = wb.createCellStyle();
-				bodyCellStyle.setWrapText(true);// 指定当单元格内容显示不下时自动换行
-				bodyCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);// 垂直
-				cell.setCellStyle(headerCellStyle); // 样式，居中
-	        }
-
-	        //循环写入行数据   
-	        int beginRow = 1;
-	        for(int i = 0; i<wrapper.getRows().size(); i++){
-	        	String[] cellvalues = wrapper.getRows().get(i);
-	        	row = (HSSFRow) sheet.createRow(beginRow + i);
-	        	for(int j = 0; j < cellvalues.length; j++ ){
-	        		row.createCell(j).setCellValue(cellvalues[j]);
-	        	}
-	        }
+		} catch (Exception e){
+			logger.error("生成excel文件出错", e);
 		}
-		// 返回Workbook
-		return wb;
+		return null;
 	}
 
-	/***
-	 * 创建样式
-	 * @param wb
-	 * @return
-	 */
-	private static HSSFCellStyle buildHeaderStyle(HSSFWorkbook wb){
-		HSSFCellStyle headerCellStyle = wb.createCellStyle(); // 样式对象      
-        // 设置单元格的背景颜色为淡蓝色  
-        headerCellStyle.setFillForegroundColor(HSSFColor.PALE_BLUE.index); 
-        headerCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);// 垂直
-        headerCellStyle.setAlignment(HorizontalAlignment.CENTER);// 水平
-        headerCellStyle.setWrapText(true);// 指定当单元格内容显示不下时自动换行
-        
-        Font font = wb.createFont();
-        font.setBold(true);
-        font.setFontName("宋体");
-        headerCellStyle.setFont(font);
-        
-        return headerCellStyle;
-	}
-
-	/***
-	 * 释放内存
-	 */
-	private void freeMemory(){
-		sheetList = null;
-	}
-	
 }

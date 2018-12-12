@@ -70,6 +70,17 @@ public class BaseController {
 	 */
 	protected static final String ERROR = "error";
 
+	/***
+	 * 提示消息的key
+	 */
+	protected static final String KEY_PROMPT_MSG = "promptMsg";
+
+	/***
+	 * 操作结果提示信息的key
+	 */
+	private static final String KEY_RESULT = "result";
+
+
 	/**
 	 * 日志记录Logger
 	 */
@@ -141,14 +152,14 @@ public class BaseController {
 	 * @param request
 	 * @param model
 	 */
-	public void bindResultMsg(HttpServletRequest request, ModelMap model){
+	protected void bindResultMsg(HttpServletRequest request, ModelMap model){
 		// 将闪现信息从Session中读取
 		HttpSession session = request.getSession(false);
 		if(session != null){
-			String[] msg = (String[]) session.getAttribute("result");
+			String[] msg = (String[]) session.getAttribute(KEY_RESULT);
 			if(msg != null){
-				model.put("result", msg);
-				session.removeAttribute("result");
+				model.put(KEY_RESULT, msg);
+				session.removeAttribute(KEY_RESULT);
 			}
 		}
 	}
@@ -186,16 +197,36 @@ public class BaseController {
 	 * @param success
 	 * @param msg
 	 */
-	public void addResultMsg(HttpServletRequest request, boolean success, String msg){
+	protected void addResultMsg(HttpServletRequest request, boolean success, String msg){
 		// 将闪现信息缓存到Session
-		addIntoSession(request, "result", new String[]{String.valueOf(success), msg});
+		addIntoSession(request, KEY_RESULT, new String[]{String.valueOf(success), msg});
+	}
+
+	/***
+	 * 添加操作成功的结果信息，用于UI端提示用户
+	 * @param request
+	 * @param msg
+	 */
+	protected void addSuccessResultMsg(HttpServletRequest request, String msg){
+		// 将闪现信息缓存到Session
+		addIntoSession(request, KEY_RESULT, new String[]{"true", msg});
+	}
+
+	/***
+	 * 添加操作失败的结果信息，用于UI端提示用户
+	 * @param request
+	 * @param msg
+	 */
+	protected void addFailResultMsg(HttpServletRequest request, String msg){
+		// 将闪现信息缓存到Session
+		addIntoSession(request, KEY_RESULT, new String[]{"false", msg});
 	}
 	
 	/**
 	 * 绑定指定的一个错误信息
 	 * @return
 	 */
-	public void bindError(ModelMap model, String errorMsg){
+	protected void bindError(ModelMap model, String errorMsg){
 		model.put("errors", errorMsg);	
 	}
 
@@ -203,8 +234,8 @@ public class BaseController {
 	 * 添加附加的提示信息，加在操作成功/失败的提示后面
 	 * @return
 	 */
-	public void addAdditionalPromptMsg(ModelMap model, String promptMsg){
-		model.put("promptMsg", promptMsg);
+	protected void addAdditionalPromptMsg(ModelMap model, String promptMsg){
+		model.put(KEY_PROMPT_MSG, promptMsg);
 	}
 
 	/**
@@ -212,7 +243,7 @@ public class BaseController {
 	 * @param result
 	 * @return
 	 */
-	public void bindErrors(ModelMap model, BindingResult result){
+	protected void bindErrors(ModelMap model, BindingResult result){
 		if(result == null || !result.hasErrors()){
 			return;
 		}
@@ -230,7 +261,7 @@ public class BaseController {
 	 * @param result
 	 * @return
 	 */
-	public String getBindingError(BindingResult result){
+	protected String getBindingError(BindingResult result){
 		if(result == null || !result.hasErrors()){
 			return null;
 		}
@@ -247,9 +278,9 @@ public class BaseController {
 	 * @param errorMsg
 	 * @return
 	 */
-	public Map<String, Object> buildJsonError(String errorMsg){
-		Map<String, Object> map = new HashMap<String, Object>(4);
-		List<String> allErrors = new ArrayList<String>();
+	protected Map<String, Object> buildJsonError(String errorMsg){
+		Map<String, Object> map = new HashMap<>(4);
+		List<String> allErrors = new ArrayList<>();
 		allErrors.add(errorMsg);
 		map.put("errors", allErrors);
 		
@@ -262,8 +293,8 @@ public class BaseController {
 	 * @param value
 	 * @return
 	 */
-	public Map<String, Object> newCriteria(String key, Object value) {
-		Map<String, Object> criteria = new HashMap<String, Object>(8);
+	protected Map<String, Object> newCriteria(String key, Object value) {
+		Map<String, Object> criteria = new HashMap<>(8);
 		criteria.put(key, value);
 		return criteria;
 	}
@@ -274,7 +305,7 @@ public class BaseController {
 	 * @param criteria
 	 * @return
 	 */
-	public void bindCriteria(ModelMap modelMap, Map<String, Object> criteria) {
+	protected void bindCriteria(ModelMap modelMap, Map<String, Object> criteria) {
 		modelMap.addAttribute("criteria", criteria);
 	}
 
@@ -287,7 +318,7 @@ public class BaseController {
 	 * @param pageSize
 	 * @return
 	 */
-	public Map<String, Object> buildPagination(String baseUrl, Map<String, Object> criteria, int totalCount, int currentPage, int... pageSize) {
+	protected Map<String, Object> buildPagination(String baseUrl, Map<String, Object> criteria, int totalCount, int currentPage, int... pageSize) {
 		// 获取记录总数，用于前端显示分页
 		Map<String, Object> result = new HashMap<String, Object>(16);
 		result.put("baseUrl", baseUrl);
@@ -335,11 +366,15 @@ public class BaseController {
 	 * @param criteria
 	 * @return
 	 */
-	private String criteria2paramString(Map<String, Object> criteria){
+	protected String criteria2paramString(Map<String, Object> criteria){
 		String result = "";
 		if(criteria != null && !criteria.isEmpty()){
 			for(Map.Entry<String, Object> entry : criteria.entrySet()){
 				if(BaseServiceImpl.OFFSET.equals(entry.getKey()) || BaseServiceImpl.COUNT.equals(entry.getKey()) || entry.getKey().startsWith(Query.C.ORDERBY_.name())){
+					continue;
+				}
+				if(entry.getValue() instanceof Set || entry.getValue() instanceof List || entry.getValue().getClass().isArray()){
+					logger.info("查询条件转url参数时忽略集合类型参数: "+entry.getKey());
 					continue;
 				}
 				String value = String.valueOf(entry.getValue());

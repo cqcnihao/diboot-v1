@@ -205,7 +205,7 @@ public class BaseUserServiceImpl extends BaseServiceImpl implements BaseUserServ
         return success;
     }
 
-    //TODO 暂时缓存角色配置
+    // 暂时缓存角色配置
     Map<String, String> roleKVMap = null;
     private Map<String, String> getRoleKvMap(){
         if(roleKVMap != null){

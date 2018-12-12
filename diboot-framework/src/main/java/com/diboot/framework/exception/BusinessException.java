@@ -5,7 +5,6 @@ package com.diboot.framework.exception;
  * @author Mazc@dibo.ltd
  */
 public class BusinessException extends Exception {
-
 	private static final long serialVersionUID = -97L;
 
 	public BusinessException(String msg) {

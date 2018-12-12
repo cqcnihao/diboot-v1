@@ -13,6 +13,7 @@ import java.util.Map;
  * Model父类
  * @author Mazc@dibo.ltd
  * @version 20161107
+ *
  */
 public abstract class BaseModel implements Serializable{
 	private static final long serialVersionUID = 203L;

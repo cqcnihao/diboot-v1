@@ -1,7 +1,7 @@
 package com.diboot.web.controller;
 
-import com.diboot.framework.model.BaseModel;
 import com.diboot.common.service.FileService;
+import com.diboot.framework.model.BaseModel;
 import com.diboot.web.utils.AppFileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

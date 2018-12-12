@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "./mybatis-3-mapper.dtd">
+<mapper namespace="com.diboot.wechat.mp.service.mapper.WxMemberMapper">
+
+    <!-- 通用CRUD: begin  -->
+    <!-- 指定Select需要返回的列 -->
+    <sql id="columns">
+        <trim suffixOverrides=",">
+            <if test="f == null or f.id != null">self.id,</if>
+            <if test="f == null or f.openid != null">self.openid,</if>
+            <if test="f == null or f.orgId != null">self.org_id,</if>
+            <if test="f == null or f.avatar != null">self.avatar,</if>
+            <if test="f == null or f.gender != null">self.gender,</if>
+            <if test="f == null or f.language != null">self.language,</if>
+            <if test="f == null or f.country != null">self.country,</if>
+            <if test="f == null or f.province != null">self.province,</if>
+            <if test="f == null or f.city != null">self.city,</if>
+            <if test="f == null or f.isSubscribe != null">self.isSubscribe,</if>
+            <if test="f == null or f.subscribeTime != null">self.subscribeTime,</if>
+            <if test="f == null or f.remark != null">self.remark,</if>
+            <if test="f == null or f.groupId != null">self.groupId,</if>
+            <if test="f == null or f.tagIds != null">self.tagIds,</if>
+            <if test="f == null or f.subscribeScene != null">self.subscribeScene,</if>
+            <if test="f == null or f.qrScene != null">self.qrScene,</if>
+            <if test="f == null or f.qrSceneStr != null">self.qrSceneStr,</if>
+            <if test="f == null or f.nickname != null">self.nickname,</if>
+            <if test="f == null or f.extdata != null">self.extdata,</if>
+            <if test="f == null or f.active != null">self.active,</if>
+            <if test="f == null or f.createBy != null">self.create_by,</if>
+            <if test="f == null or f.createTime != null">self.create_time,</if>
+            <if test="f == null or f.updateTime != null">self.update_time,</if>
+        </trim>
+    </sql>
+
+    <!-- 构建查询条件 -->
+    <sql id="conditions">
+        <if test="c.id != null"> AND self.id=#{c.id}</if>
+        <if test="c.openid != null"> AND self.openid=#{c.openid}</if>
+        <if test="c.orgId != null"> AND self.org_id=#{c.orgId}</if>
+        <if test="c.avatar != null"> AND self.avatar=#{c.avatar}</if>
+        <if test="c.gender != null"> AND self.gender=#{c.gender}</if>
+        <if test="c.language != null"> AND self.language=#{c.language}</if>
+        <if test="c.country != null"> AND self.country=#{c.country}</if>
+        <if test="c.province != null"> AND self.province=#{c.province}</if>
+        <if test="c.city != null"> AND self.city=#{c.city}</if>
+        <if test="c.isSubscribe != null"> AND self.isSubscribe=#{c.isSubscribe}</if>
+        <if test="c.subscribeTime != null"> AND (self.subscribeTime >= CONCAT(#{c.subscribeTime},' 00:00:00') AND self.subscribeTime &lt; DATE_ADD(#{c.subscribeTime}, INTERVAL 1 DAY))</if>
+        <if test="c.remark != null"> AND self.remark=#{c.remark}</if>
+        <if test="c.groupId != null"> AND self.groupId=#{c.groupId}</if>
+        <if test="c.tagIds != null"> AND self.tagIds=#{c.tagIds}</if>
+        <if test="c.subscribeScene != null"> AND self.subscribeScene=#{c.subscribeScene}</if>
+        <if test="c.qrScene != null"> AND self.qrScene=#{c.qrScene}</if>
+        <if test="c.qrSceneStr != null"> AND self.qrSceneStr=#{c.qrSceneStr}</if>
+        <if test="c.nickname != null"> AND self.nickname=#{c.nickname}</if>
+        <if test="c.extdata != null"> AND self.extdata=#{c.extdata}</if>
+        AND self.active=1 
+        <if test="c.createBy != null"> AND self.create_by=#{c.createBy}</if>
+        <if test="c.createTime != null"> AND (self.create_time >= CONCAT(#{c.createTime},' 00:00:00') AND self.create_time &lt; DATE_ADD(#{c.createTime}, INTERVAL 1 DAY))</if>
+        <if test="c.updateTime != null"> AND (self.update_time >= CONCAT(#{c.updateTime},' 00:00:00') AND self.update_time &lt; DATE_ADD(#{c.updateTime}, INTERVAL 1 DAY))</if>
+    </sql>
+
+    <!-- 构建set条件 -->
+    <sql id="setValues">
+    <set>
+        <if test="(f == null or f.id != null) and m.id != null">id=#{m.id},</if>
+        <if test="(f == null or f.openid != null) and m.openid != null">openid=#{m.openid},</if>
+        <if test="(f == null or f.orgId != null)">org_id=#{m.orgId},</if>
+        <if test="(f == null or f.avatar != null)">avatar=#{m.avatar},</if>
+        <if test="(f == null or f.gender != null)">gender=#{m.gender},</if>
+        <if test="(f == null or f.language != null)">language=#{m.language},</if>
+        <if test="(f == null or f.country != null)">country=#{m.country},</if>
+        <if test="(f == null or f.province != null)">province=#{m.province},</if>
+        <if test="(f == null or f.city != null)">city=#{m.city},</if>
+        <if test="(f == null or f.isSubscribe != null)">isSubscribe=#{m.isSubscribe},</if>
+        <if test="(f == null or f.subscribeTime != null) and m.subscribeTime != null">subscribeTime=#{m.subscribeTime},</if>
+        <if test="(f == null or f.remark != null)">remark=#{m.remark},</if>
+        <if test="(f == null or f.groupId != null)">groupId=#{m.groupId},</if>
+        <if test="(f == null or f.tagIds != null)">tagIds=#{m.tagIds},</if>
+        <if test="(f == null or f.subscribeScene != null)">subscribeScene=#{m.subscribeScene},</if>
+        <if test="(f == null or f.qrScene != null)">qrScene=#{m.qrScene},</if>
+        <if test="(f == null or f.qrSceneStr != null)">qrSceneStr=#{m.qrSceneStr},</if>
+        <if test="(f == null or f.nickname != null)">nickname=#{m.nickname},</if>
+        <if test="(f == null or f.extdata != null)">extdata=#{m.extdata},</if>
+        <if test="(f == null or f.active != null) and m.active != null">active=#{m.active},</if>
+    </set>
+    </sql>
+
+    <!-- 添加记录 -->
+    <insert id="create" parameterType="com.diboot.wechat.mp.model.WxMember" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wx_member(
+		     openid, org_id, avatar, gender, language, country, province, city, isSubscribe, subscribeTime, remark, groupId, tagIds, subscribeScene, qrScene, qrSceneStr, nickname, extdata, active, create_by
+        )
+        VALUES(
+		     #{openid}, #{orgId}, #{avatar}, #{gender}, #{language}, #{country}, #{province}, #{city}, #{isSubscribe}, #{subscribeTime}, #{remark}, #{groupId}, #{tagIds}, #{subscribeScene}, #{qrScene}, #{qrSceneStr}, #{nickname}, #{extdata}, #{active}, #{createBy}
+        )
+    </insert>
+
+    <!-- 批量创建 -->
+    <insert id="batchCreate" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wx_member(
+         openid, org_id, avatar, gender, language, country, province, city, isSubscribe, subscribeTime, remark, groupId, tagIds, subscribeScene, qrScene, qrSceneStr, nickname, extdata, active, create_by
+        )
+        VALUES
+        <foreach collection="list" item="m" separator=",">
+            ( #{m.openid}, #{m.orgId}, #{m.avatar}, #{m.gender}, #{m.language}, #{m.country}, #{m.province}, #{m.city}, #{m.isSubscribe}, #{m.subscribeTime}, #{m.remark}, #{m.groupId}, #{m.tagIds}, #{m.subscribeScene}, #{m.qrScene}, #{m.qrSceneStr}, #{m.nickname}, #{m.extdata}, #{m.active}, #{m.createBy})
+        </foreach>
+    </insert>
+
+    <!-- 更新记录 -->
+    <update id="update" parameterType="com.diboot.wechat.mp.model.WxMember">
+        UPDATE wx_member
+        <include refid="setValues" />
+        WHERE id=#{m.id, jdbcType=BIGINT}
+    </update>
+
+    <!-- 删除记录 -->
+	<update id="delete" parameterType="long">
+		UPDATE wx_member SET active=0 WHERE id=#{id, jdbcType=BIGINT}
+	</update>
+
+    <!-- 查询一条记录 -->
+    <select id="get" parameterType="long" resultType="com.diboot.wechat.mp.model.WxMember">
+        SELECT self.* 
+        FROM wx_member self
+        WHERE self.id=#{id, jdbcType=BIGINT}
+    </select>
+
+    <!-- 查询符合条件的记录总数 -->
+    <select id="getListCount" parameterType="Map" resultType="Integer">
+        SELECT count(self.id)
+        FROM  wx_member self
+        <where>
+            <include refid="conditions" />
+        </where>
+    </select>
+
+    <!-- 查询符合条件的记录 -->
+    <select id="getList" resultType="com.diboot.wechat.mp.model.WxMember">
+        SELECT self.* 
+        FROM wx_member self
+        <where>
+            <include refid="conditions" />
+        </where>
+        ORDER BY self.id DESC
+        <if test="c.COUNT != null">
+            LIMIT <if test="c.OFFSET != null">#{c.OFFSET}, </if>#{c.COUNT}
+        </if>
+    </select>
+
+    <!-- 查询符合条件的记录，返回指定字段的Map -->
+    <select id="getMapList" resultType="java.util.Map">
+        SELECT <include refid="columns" />
+        FROM wx_member self
+        <where>
+            <include refid="conditions" />
+        </where>
+        ORDER BY self.id DESC
+        <if test="c.COUNT != null">
+            LIMIT <if test="c.OFFSET != null">#{c.OFFSET}, </if>#{c.COUNT}
+        </if>
+    </select>
+    <!-- 通用CRUD: end -->
+
+    <!-- 扩展SQL -->
+	
+</mapper>

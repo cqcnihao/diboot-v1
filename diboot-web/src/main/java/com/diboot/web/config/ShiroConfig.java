@@ -1,6 +1,8 @@
 package com.diboot.web.config;
 
-import com.diboot.framework.security.BaseJwtAuthorizingRealm;
+import com.diboot.framework.security.BaseUserRealm;
+import com.diboot.framework.security.RetryLimitCredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -9,8 +11,6 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +34,10 @@ public class ShiroConfig {
     /**
      * Shiro的Web过滤器Factory: shiroFilter
      */
-    @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+    @Bean(name = "shiroFilter")
+    public ShiroFilterFactoryBean shiroFilter() {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-        shiroFilter.setSecurityManager(securityManager);
+        shiroFilter.setSecurityManager(securityManager());
 
         shiroFilter.setLoginUrl(Cons.URL_LOGIN);
         shiroFilter.setSuccessUrl(Cons.URL_WELCOME);
@@ -56,32 +56,25 @@ public class ShiroConfig {
         return shiroFilter;
     }
 
-    /***
-     * 过滤器定义，具体定义交由shiroFilterFactoryBean，此处仅声明以避免报错
-     * @return
-     */
-    @Bean
-    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-        return new DefaultShiroFilterChainDefinition();
-    }
-
-    /***
-     * Shrio用户认证Realm
-     * @return
-     */
-    @Bean
-    public Realm realm(){
-        Realm jwtRealm = new BaseJwtAuthorizingRealm();
-        return jwtRealm;
-    }
-
-    /***
-     * 缓存管理类
-     * @return
-     */
     @Bean
     public CacheManager cacheManager(){
         return new MemoryConstrainedCacheManager();
+    }
+
+    /**
+     * 密码Hash校验: MD5散列2次
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        return new RetryLimitCredentialsMatcher(cacheManager());
+    }
+
+    @Bean
+    public Realm realm(){
+        BaseUserRealm userRealm = new BaseUserRealm();
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return userRealm;
     }
 
     /**
@@ -96,7 +89,7 @@ public class ShiroConfig {
     }
 
     /**
-     * Shiro生命周期处理器
+     * Shiro生命周期处理器 * @return
      */
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -104,7 +97,9 @@ public class ShiroConfig {
     }
 
     /**
-     * 开启Shiro的注解(如 @RequiresRoles, @RequiresPermissions)
+     * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),
+     * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})

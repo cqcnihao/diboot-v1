@@ -58,7 +58,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/public/**", "anon");
-        filterChainDefinitionMap.put("/token/apply", "anon");
+        filterChainDefinitionMap.put("/token/**", "anon");
         // diboot devtools
         filterChainDefinitionMap.put("/diboot/**", "anon");
 
@@ -74,29 +74,17 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
-    /***
-     * 过滤器定义，具体定义交由shiroFilterFactoryBean，此处仅声明以避免报错
-     * @return
-     */
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         return new DefaultShiroFilterChainDefinition();
     }
 
-    /***
-     * Shrio用户认证Realm
-     * @return
-     */
     @Bean
     public Realm realm(){
-        Realm jwtRealm = new BaseJwtAuthorizingRealm();
+        BaseJwtAuthorizingRealm jwtRealm = new BaseJwtAuthorizingRealm();
         return jwtRealm;
     }
 
-    /***
-     * 缓存管理类
-     * @return
-     */
     @Bean
     public CacheManager cacheManager(){
         return new MemoryConstrainedCacheManager();

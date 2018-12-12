@@ -216,27 +216,32 @@ public class BeanUtils{
         }
         Map<Object, T> allListMap = new LinkedHashMap<>(allLists.size());
         // 转换为map
-        if(V.isEmpty(fields)){
+        try{
             for(T model : allLists){
-                Object key = model.getPk();
-                if(key != null){
-                    allListMap.put(key, model);
+                Object key = null;
+                if(V.isEmpty(fields)){ //未指定字段，以id为key
+                    key = model.getPk();
                 }
-            }
-        }
-        else{
-            try{
-                for(T model : allLists){
+                else if(fields.length == 1){ // 指定了一个字段，以该字段为key，类型同该字段
+                    key = getProperty(model, fields[0]);
+                }
+                else{ // 指定了多个字段，以字段S.join的结果为key，类型为String
                     List list = new ArrayList();
                     for(String fld : fields){
                         list.add(getProperty(model, fld));
                     }
-                    allListMap.put(S.join(list), model);
+                    key = S.join(list);
+                }
+                if(key != null){
+                    allListMap.put(key, model);
+                }
+                else{
+                    logger.warn(model.getClass().getName() + " 的属性 "+fields[0]+" 值存在 null，BeanUtils.convert2KeyModelMap转换结果需要确认!");
                 }
             }
-            catch(Exception e){
-                logger.warn("转换key-model异常", e);
-            }
+        }
+        catch(Exception e){
+            logger.warn("转换key-model异常", e);
         }
         return allListMap;
     }

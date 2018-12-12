@@ -102,7 +102,10 @@ public abstract class BaseCrudController extends BaseController {
 		
 		// 加载当前页
 		if(modelMap.get(MODEL_LIST) == null){
-			List<? extends BaseModel> modelList = pageSize == null? getService().getModelList(criteria, pageIndex) : getService().getModelList(criteria, pageIndex, pageSize);
+			List<? extends BaseModel> modelList = null;
+			if(totalCount > 0){
+				modelList = pageSize == null? getService().getModelList(criteria, pageIndex) : getService().getModelList(criteria, pageIndex, pageSize);
+			}
 			modelMap.addAttribute(MODEL_LIST, modelList);
 		}
 		// 附加更多属性
@@ -202,8 +205,8 @@ public abstract class BaseCrudController extends BaseController {
         }
         // 绑定执行结果
         String msg = success?"创建操作成功！":"创建操作失败！";
-        if(modelMap.get("promptMsg") != null){
-			msg += modelMap.get("promptMsg");
+        if(modelMap.get(KEY_PROMPT_MSG) != null){
+			msg += modelMap.get(KEY_PROMPT_MSG);
 		}
         super.addResultMsg(request, success, msg);
         
@@ -271,8 +274,8 @@ public abstract class BaseCrudController extends BaseController {
         }
         // 绑定执行结果
         String msg = success?"更新操作成功！":"更新操作失败！";
-		if(modelMap.get("promptMsg") != null){
-			msg += modelMap.get("promptMsg");
+		if(modelMap.get(KEY_PROMPT_MSG) != null){
+			msg += modelMap.get(KEY_PROMPT_MSG);
 		}
         super.addResultMsg(request, success, msg);
         

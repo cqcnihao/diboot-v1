@@ -1,6 +1,7 @@
 package com.diboot.web.controller;
 
-import com.diboot.framework.model.*;
+import com.diboot.framework.model.BaseMenu;
+import com.diboot.framework.model.BaseUser;
 import com.diboot.framework.service.RoleMenuService;
 import com.diboot.framework.utils.UrlUtils;
 import com.diboot.framework.utils.V;
@@ -111,12 +112,8 @@ public class LoginAuthController extends BaseController {
         if(subject.isAuthenticated()){
             BaseUser user = (BaseUser)subject.getPrincipal();
             logger.debug("用户[" + username + "]登录认证通过！");
-            // 获取可访问菜单
-            Map<String, Object> criteria = new HashMap<>();
-            criteria.put(BaseMenu.F.type, BaseMenu.TYPE.PC.name());
-            criteria.put(BaseMenu.F.application, BaseMenu.APPLIACTION.MS.name());
-            List<BaseMenu> menus = user.isAdmin()? AppCache.getAllMenus() : roleMenuService.getMenuListByRoleList(user.getRoleList(), criteria);
-            user.setMenus(menus);
+            // 绑定可访问菜单
+            bindMenus(user);
             // 加入缓存
             subject.getSession().setAttribute("user", user);
             // 跳转到首页
@@ -127,6 +124,24 @@ public class LoginAuthController extends BaseController {
             // 验证失败，返回登录页
             String suffix = V.notEmpty(errorMsg)? "?error="+errorMsg : "";
             return redirectTo("/login" + suffix);
+        }
+    }
+
+    /***
+     * 绑定用户可访问的菜单
+     * @param user
+     */
+    private void bindMenus(BaseUser user){
+        // 获取可访问菜单
+        if(user.isAdmin()){
+            user.setMenus(AppCache.getAllMenus());
+        }
+        else{
+            Map<String, Object> criteria = new HashMap<>();
+            criteria.put(BaseMenu.F.type, BaseMenu.TYPE.PC.name());
+            criteria.put(BaseMenu.F.application, BaseMenu.APPLIACTION.MS.name());
+            List<BaseMenu> menus = roleMenuService.getMenuListByRoleList(user.getRoleList(), criteria);
+            user.setMenus(menus);
         }
     }
 
