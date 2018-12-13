@@ -216,32 +216,58 @@ public class MetadataController extends BaseCrudController {
 		Metadata metadataItem = (Metadata) metadataService.getModel(model.getId());
 		Set<Long> deleteIdsSet = new HashSet<Long>();
 		if(metadataItem.getChildren() != null){
-			for(BaseModel bm : metadataItem.getChildren()){
+			// 构建待删除子项Set
+			for(Metadata bm : metadataItem.getChildren()){
 				deleteIdsSet.add((Long)bm.getId());
 			}
 		}
 		if(items != null && items.length > 0){
-			List<Metadata> modelList = new ArrayList<Metadata>();
+			List<Metadata> createList = new ArrayList<Metadata>();
+			List<Metadata> updateList = new ArrayList<Metadata>();
 			for(String item : items){
 				Map<String, Object> map = JSON.toMap(item);
 				String idStr = String.valueOf(map.get(Metadata.F.id));
+				String itemName = String.valueOf(map.get(Metadata.F.itemName));
+				String itemValue = String.valueOf(map.get(Metadata.F.itemValue));
 				if (!V.equal("0", idStr)){
 					deleteIdsSet.remove(Long.parseLong(idStr));
+					if(metadataItem.getChildren() != null){
+						// 构建更新子项列表
+						for(Metadata bm : metadataItem.getChildren()){
+							if (V.equal(idStr, String.valueOf(bm.getId()))) {
+								if (!V.equal(itemName, bm.getItemName()) ||
+										!V.equal(itemValue, bm.getItemValue())) {
+									bm.setItemName(itemName);
+									bm.setItemValue(itemValue);
+									updateList.add(bm);
+								}
+							}
+						}
+					}
 				} else {
+					// 构建创建子项列表
 					Metadata c = new Metadata();
 					c.setType(metadataItem.getType());
 					c.setParentId((Long) metadataItem.getId());
-					c.setItemName(String.valueOf(map.get(Metadata.F.itemName)));
-					c.setItemValue(String.valueOf(map.get(Metadata.F.itemValue)));
+					c.setItemName(itemName);
+					c.setItemValue(itemValue);
 					c.setSystem(false);
-					modelList.add(c);
+					createList.add(c);
 				}
 			}
+			// 删除子项
 			for(Long id : deleteIdsSet){
 				metadataService.deleteModel(id);
 			}
-			if(!modelList.isEmpty()){
-				metadataService.batchCreateModels(modelList);
+			// 更新子项
+			if(V.notEmpty(updateList)){
+				for (Metadata metadata: updateList) {
+					metadataService.updateModel(metadata);
+				}
+			}
+			// 创建子项
+			if(V.notEmpty(createList)){
+				metadataService.batchCreateModels(createList);
 			}
 		}else{
 			//子级数据全部清空

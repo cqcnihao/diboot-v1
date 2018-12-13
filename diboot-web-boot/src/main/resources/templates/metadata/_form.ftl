@@ -37,8 +37,11 @@
 					<#if !item.system>
 					<button aria-hidden='true' data-dismiss='alert' class='close' type='button'>×</button>
 					</#if>
-					${item.itemName} <#if item.itemValue??>(${item.itemValue})</#if>
-					<input type='hidden' name='items' value='${item.id}_${item.itemName}_${(item.itemValue)!""}' />
+					<p class="subItem">
+						<span>${item.itemName} <#if item.itemValue??>(${item.itemValue})</#if></span>
+						<input type='hidden' name='items' value='{"id": "${item.id}","itemName": "${item.itemName}","itemValue": "${(item.itemValue)!''}"}' />
+					</p>
+
 				</div>
 				</#list>
 			</#if>

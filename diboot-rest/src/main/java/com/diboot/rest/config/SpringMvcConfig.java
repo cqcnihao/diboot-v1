@@ -63,7 +63,7 @@ public class SpringMvcConfig implements WebMvcConfigurer{
         config.setUsername(BaseConfig.getProperty("datasource.username"));
         config.setPassword(BaseConfig.getProperty("datasource.password"));
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        // 生产环境参数
+        // 生产环境参数 参照: https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
         if(AppConfig.isProductionEnv()){
             config.setMaximumPoolSize(20);
         }
