@@ -215,7 +215,7 @@ public abstract class BaseServiceImpl implements BaseService {
 		criteria = attachPagination(criteria, pages);
 		List<T> list = getMapper().getList(criteria);
 		if(list != null && list.size() > 1000){
-			logger.warn("数据查询结果过多，记录数为 "+list.size()+"条，请检查调用是否合理！: criteria="
+			logger.warn(this.getClass().getName() + ".getModelList 查询返回数据过多，实际返回"+list.size()+"条，请检查调用是否合理！: criteria="
 					+ (V.notEmpty(criteria) ? criteria.toString() : null));
 		}
 		return list;
@@ -247,8 +247,8 @@ public abstract class BaseServiceImpl implements BaseService {
 		List<Map<String, Object>> list = getMapper().getMapList(criteria, fields);
 		if(V.notEmpty(list)){
 			if(list.size() > 1000){
-				logger.warn("数据查询结果过多，记录数为 "+list.size()+"条，请检查调用是否合理！: criteria=" +
-						(V.notEmpty(criteria) ? criteria.toString() : null));
+				logger.warn(this.getClass().getName() + ".getMapList 查询返回数据过多，实际返回"+list.size()+"条，请检查调用是否合理！: criteria="
+						+ (V.notEmpty(criteria) ? criteria.toString() : null));
 			}
 			//转换Map中的key
 			Map<String, String> exchangeKeys = getExchangeKeys(list.get(0).keySet(), loadFields);
