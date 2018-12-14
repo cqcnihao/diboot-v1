@@ -1,0 +1,4 @@
+#data source info
+datasource.url=jdbc:mysql://xx.xx.xx.xx:3306/xxx?characterEncoding=utf8
+datasource.username=xx
+datasource.password=xxxx

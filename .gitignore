@@ -9,3 +9,7 @@ node_modules/
 _book/
 target/
 null/
+application.properties
+application-*.properties
+diboot.properties
+system.properties

@@ -4,7 +4,7 @@ datasource.username=xx
 datasource.password=xxxx
 
 #files storage directory
-files.storage.directory=D:/temp
+files.storage.directory=xxx
 
 system.default.avatar=/static/img/avatar.jpg
 system.default.pageSize=20

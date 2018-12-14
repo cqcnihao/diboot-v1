@@ -1,11 +1,11 @@
 # license
-#devtools.license=02DF3FCEFF5843E7B7A6B83DBAFE0F0E
+#devtools.license=xxx
 # version
 #codes.version=1.5
 # author
-codes.author=Mazc
+codes.author=xxx
 # copyright
-codes.copyright=www.dibo.ltd
+codes.copyright=xxx
 # output config items
 output.path.model=diboot-common/src/main/java/com/diboot/common/model/
 output.path.service=diboot-common/src/main/java/com/diboot/common/service/
