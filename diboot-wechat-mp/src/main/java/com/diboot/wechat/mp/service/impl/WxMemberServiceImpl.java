@@ -3,6 +3,7 @@ package com.diboot.wechat.mp.service.impl;
 import com.diboot.framework.service.BaseService;
 import com.diboot.framework.service.impl.BaseServiceImpl;
 import com.diboot.framework.service.mapper.BaseMapper;
+import com.diboot.wechat.mp.service.mapper.WxMemberMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
