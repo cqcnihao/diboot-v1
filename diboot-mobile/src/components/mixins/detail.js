@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     edit() {
-      this.$router.push({ path: `/${this.name}/update/${this.model.pk}` });
+      this.$router.push({ path: `/${this.name}/update/${this.model.pkString}` });
     },
     showImage(imgurl) {
       this.imageUrl = imgurl;

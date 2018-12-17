@@ -26,14 +26,14 @@ export default {
         return false;
       }
       let res = {};
-      if (this.model.pk === undefined) {
+      if (this.model.pkString === undefined) {
         // 新建
         res = await this.$http.post(`/${this.name}/`, this.model);
-        this.handleResult(res, res.data ? res.data.id : '');
+        this.handleResult(res, res.data ? res.data.pkString : '');
       } else {
         // 更新
-        res = await this.$http.put(`/${this.name}/${this.model.pk}`, this.model);
-        this.handleResult(res, this.model.pk);
+        res = await this.$http.put(`/${this.name}/${this.model.pkString}`, this.model);
+        this.handleResult(res, this.model.pkString);
       }
       return true;
     },
