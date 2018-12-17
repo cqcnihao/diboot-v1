@@ -131,6 +131,7 @@ public abstract class BaseCrudRestController extends BaseController {
 			// 组装返回结果
 			Map<String, Object> data = new HashMap<>(4);
 			data.put(BaseModel.F.id, model.getPk());
+			data.put("pkString", model.getPkString());
 			return new JsonResult(Status.OK, data);
         }
         else{
