@@ -89,6 +89,8 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm());
         securityManager.setCacheManager(cacheManager());
+        // 记住登录用户, 默认设置为:不记住
+        securityManager.setRememberMeManager(null);
         return securityManager;
     }
 

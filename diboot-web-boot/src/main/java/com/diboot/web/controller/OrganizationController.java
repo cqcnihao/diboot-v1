@@ -1,13 +1,12 @@
 package com.diboot.web.controller;
 
+import com.diboot.common.service.OrganizationService;
 import com.diboot.framework.config.Status;
 import com.diboot.framework.model.BaseModel;
 import com.diboot.framework.model.BaseOrg;
 import com.diboot.framework.model.BaseUser;
 import com.diboot.framework.service.BaseService;
-import com.diboot.common.model.Organization;
-import com.diboot.common.service.OrganizationService;
-import com.diboot.web.utils.AppHelper;
+import com.diboot.framework.utils.BaseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,9 @@ import java.util.Map;
 
 /***
  * 单位相关操作Controller
- * @author Mazc@dibo.ltd
- * @version 2017-05-14
+ * @author yaojf
+ * @version 2018/11/30
+ * Copyright © www.dibo.ltd
  *
  */
 @Controller
@@ -80,13 +80,8 @@ public class OrganizationController extends BaseCrudController {
 	 * @throws Exception
 	 */
 	@GetMapping("/view/{id}")
-	@Override
-    public String viewPage(@PathVariable("id")Object id, HttpServletRequest request, ModelMap modelMap) throws Exception {
-		String viewPage = super.viewPage(id, request, modelMap);
-		if("body".equalsIgnoreCase(request.getParameter("load"))){
-			return super.view(request, modelMap, "_viewBody");
-		}
-		return viewPage;
+    public String viewPage(@PathVariable("id")Long id, HttpServletRequest request, ModelMap modelMap) throws Exception {
+		return super.viewPage(id, request, modelMap);
     }
 	
 	/***
@@ -96,7 +91,7 @@ public class OrganizationController extends BaseCrudController {
 	 */
 	@GetMapping("/create")
 	@Override
-    public String createPage(HttpServletRequest request, ModelMap modelMap) throws Exception {  
+    public String createPage(HttpServletRequest request, ModelMap modelMap) throws Exception {
 		return super.createPage(request, modelMap);
     }
 	
@@ -116,10 +111,9 @@ public class OrganizationController extends BaseCrudController {
 	 * @throws Exception
 	 */
 	@GetMapping("/update/{id}")
-	@Override
-    public String updatePage(@PathVariable("id")Object id, HttpServletRequest request, ModelMap modelMap) throws Exception {
+	public String updatePage(@PathVariable("id")Long id, HttpServletRequest request, ModelMap modelMap) throws Exception {
 		return super.updatePage(id, request, modelMap);
-    }
+	}
 	
 	/***
 	 * 更新的后台处理
@@ -127,7 +121,7 @@ public class OrganizationController extends BaseCrudController {
 	 * @throws Exception
 	 */
 	@PostMapping("/update/{id}")
-	public String update(@PathVariable("id")Object id, @Valid BaseOrg model, BindingResult result, HttpServletRequest request, ModelMap modelMap) throws Exception{
+	public String update(@PathVariable("id")Long id, @Valid BaseOrg model, BindingResult result, HttpServletRequest request, ModelMap modelMap) throws Exception{
 		return super.update(id, model, result, request, modelMap);
 	}
 	
@@ -138,14 +132,13 @@ public class OrganizationController extends BaseCrudController {
 	 */
 	@PostMapping("/delete/{id}")
 	@ResponseBody
-	@Override
-	public Map<String, Object> delete(@PathVariable("id")Object id, HttpServletRequest request) throws Exception{
+	public Map<String, Object> delete(@PathVariable("id")Long id, HttpServletRequest request) throws Exception{
 		return super.delete(id, request);
 	}
 
 	@Override
 	protected String beforeDelete(BaseModel model) {
-		BaseUser currentUser = AppHelper.getCurrentUser();
+		BaseUser currentUser = BaseHelper.getCurrentUser();
     	boolean canDelete = (currentUser != null && (currentUser.isAdmin() || currentUser.getRealname().equals(model.getCreateBy())));
     	return canDelete? null : Status.FAIL_NO_PERMISSION.label();
 	}
@@ -153,8 +146,13 @@ public class OrganizationController extends BaseCrudController {
 	@Override
 	protected void attachMore(HttpServletRequest request, ModelMap modelMap) throws Exception{
 		// 添加parentId下拉选项
-		List<Map<String, Object>> options = organizationService.getKeyValuePairList(null, Organization.F.id, Organization.F.shortName);
+		List<Map<String, Object>> options = organizationService.getKeyValuePairList(null, BaseOrg.F.id, BaseOrg.F.shortName);
 		modelMap.put("options", options);
+	}
+
+	@Override
+	protected void attachMore4View(Object id, BaseModel model, ModelMap modelMap) throws Exception {
+		this.attachMore(null, modelMap);
 	}
 
 	@Override

@@ -278,7 +278,7 @@ CREATE TABLE `organization` (
   `short_name` varchar(50) NOT NULL COMMENT '简称',
   `logo` varchar(200) DEFAULT NULL COMMENT 'Logo',
   `address` varchar(200) DEFAULT NULL COMMENT '地址',
-  `telphone` varchar(20) DEFAULT NULL COMMENT '电话',
+  `telephone` varchar(20) DEFAULT NULL COMMENT '电话',
   `email` varchar(50) DEFAULT NULL COMMENT 'Email',
   `fax` varchar(50) DEFAULT NULL COMMENT '传真',
   `website` varchar(200) DEFAULT NULL COMMENT '网址',
