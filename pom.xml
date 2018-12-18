@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.diboot</groupId>
+  <artifactId>diboot-open</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0</version>
+
+  <modules>
+    <module>diboot-framework</module>
+    <module>diboot-components-file</module>
+    <module>diboot-components-msg</module>
+    <module>diboot-rest</module>
+    <module>diboot-wechat-cp</module>
+    <module>diboot-wechat-mp</module>
+    <module>diboot-wechat-open</module>
+    <module>diboot-common</module>
+    <module>diboot-web</module>
+    <module>diboot-web-boot</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
