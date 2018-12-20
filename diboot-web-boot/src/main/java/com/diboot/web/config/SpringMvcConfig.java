@@ -49,7 +49,7 @@ import java.util.concurrent.Executors;
  */
 @Configuration
 @EnableScheduling
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})
 @EnableTransactionManagement(proxyTargetClass=true)
 @ComponentScan(basePackages={"com.diboot"})
 @MapperScan(basePackages={"com.diboot.**.mapper"})
