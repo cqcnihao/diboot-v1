@@ -39,7 +39,7 @@ dependencies {
             "javax.servlet:javax.servlet-api:4.0.1"
     )
     if(isDevEnv){// 开发环境 启用Devtools
-        compile("com.diboot:diboot-devtools-web:1.5.0")
+        compile("com.diboot:diboot-devtools-web:1.5.+")
     }
     compile fileTree(dir:'plugins', include:['*.jar'])
 

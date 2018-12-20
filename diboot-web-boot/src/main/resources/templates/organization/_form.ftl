@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post">
+<form class="form-horizontal" method="POST" >
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="name">名称 <@required /></label>
 		<div class="col-md-9">
@@ -22,8 +22,8 @@
                 <option value="0">- 无 -</option>
 			<#if options??>
 				<#list options as opt>
-					<#if !(model.id)?? || model.id != opt["v"]>
-                        <option value="${opt["v"]}" <#if (model.parentId)?? && model.parentId==opt["v"]>selected</#if>>${opt["k"]}</option>
+					<#if !(model.id)?? || model.id != opt.v>
+                        <option value="${opt.v}" <#if (model.parentId)?? && model.parentId==opt.v>selected</#if>>${opt.k}</option>
 					</#if>
 				</#list>
 			</#if>
@@ -47,10 +47,10 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-md-2 control-label" for="telphone">电话 </label>
+		<label class="col-md-2 control-label" for="telephone">电话 </label>
 		<div class="col-md-9">
-			<input type="text" id="telphone" name="telphone" class="form-control " placeholder="电话" 
-				value="<#if (model.telphone)??>${model.telphone}</#if>"  
+			<input type="text" id="telephone" name="telephone" class="form-control " placeholder="电话"
+				value="<#if (model.telephone)??>${model.telephone}</#if>"
 		  		data-fv="Length(-20)">
 		</div>
 	</div>
@@ -86,13 +86,13 @@
 		  		data-fv="Length(-255)">
 		</div>
 	</div>
-	<div class="form-group">
-		<div class="col-md-offset-2 col-md-2">
-			<#if (model.id)??>
-			<button class="btn btn-primary btn-block" type="submit"> 提交更新 </button>
-			<#else>
-			<button class="btn btn-success btn-block" type="submit"> 提交 </button>			
-			</#if>
-		</div>
-	</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+        <#if (model.id)??>
+            <button class="btn btn-primary btn-block" type="submit"> 提交更新 </button>
+		<#else>
+            <button class="btn btn-success btn-block" type="submit"> 提交 </button>
+		</#if>
+        </div>
+    </div>
 </form>

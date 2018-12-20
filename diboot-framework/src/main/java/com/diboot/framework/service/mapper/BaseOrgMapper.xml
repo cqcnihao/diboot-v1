@@ -17,6 +17,7 @@
 			<if test="f == null or f.email != null">self.email,</if>
 			<if test="f == null or f.fax != null">self.fax,</if>
 			<if test="f == null or f.website != null">self.website,</if>
+            <if test="f == null or f.comment != null">self.comment,</if>
 			<if test="f == null or f.active != null">self.active,</if>
 		</trim>
 	</sql>
@@ -27,6 +28,12 @@
 		<if test="c.name != null">AND self.name like CONCAT('%',#{c.name},'%')</if>
 		<if test="c.shortName != null">AND self.short_name like CONCAT('%',#{c.shortName},'%')</if>
 		<if test="c.telephone != null">AND self.telephone=#{c.telephone}</if>
+        <if test="c.email != null">AND self.email=#{c.email}</if>
+        <if test="c.website != null">AND self.website=#{c.website}</if>
+        <if test="c.fax != null">AND self.fax=#{c.fax}</if>
+        <if test="c.address != null">AND self.address like CONCAT('%',#{c.address},'%')</if>
+        <if test="c.comment != null">AND self.comment like CONCAT('%',#{c.comment},'%')</if>
+		<if test="c.createTime != null">AND date(self.create_time)=#{c.createTime}</if>
 		AND self.active=1
     </sql>
 
@@ -42,6 +49,7 @@
 			<if test="f == null or f.email != null">email=#{m.email},</if>
 			<if test="f == null or f.fax != null">fax=#{m.fax},</if>
 			<if test="f == null or f.website != null">website=#{m.website},</if>
+            <if test="f == null or f.comment != null">comment=#{m.comment},</if>
 			<if test="f == null or f.active != null">active=#{m.active},</if>
         </set>
     </sql>
@@ -49,10 +57,10 @@
     <!-- 添加记录 -->
 	<insert id="create" parameterType="com.diboot.framework.model.BaseOrg" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO organization(
-			parent_id, name, short_name, logo, telephone, address, email, fax, website, active, create_by
+			parent_id, name, short_name, logo, telephone, address, email, fax, website, comment, active, create_by
 		)
 		VALUES(
-			#{parentId}, #{name}, #{shortName}, #{logo}, #{telephone}, #{address}, #{email}, #{fax}, #{website}, #{active}, #{createBy}
+			#{parentId}, #{name}, #{shortName}, #{logo}, #{telephone}, #{address}, #{email}, #{fax}, #{website}, #{comment}, #{active}, #{createBy}
 		)
 	</insert>
 
@@ -113,11 +121,11 @@
 	<!-- 批量创建 -->
 	<insert id="batchCreate" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO organization(
-			parent_id, name, short_name, logo, telphone, address, email, fax, website, active, create_by
+			parent_id, name, short_name, logo, telephone, address, email, fax, website, comment, active, create_by
 		)
 		VALUES
 		<foreach collection="list" item="m" separator=",">
-			(#{m.parentId}, #{m.name}, #{m.shortName}, #{m.logo}, #{m.telphone}, #{m.address}, #{m.email}, #{m.fax}, #{m.website}, #{m.active}, #{m.createBy})
+			(#{m.parentId}, #{m.name}, #{m.shortName}, #{m.logo}, #{m.telephone}, #{m.address}, #{m.email}, #{m.fax}, #{m.website}, #{m.comment}, #{m.active}, #{m.createBy})
 		</foreach>
 	</insert>
 	<!-- 通用CRUD: end -->
