@@ -626,7 +626,7 @@ public class BaseController {
 		if(V.isEmpty(strArray)){
 			return null;
 		}
-		return new ArrayList<>(Arrays.asList(strArray));
+		return Arrays.asList(strArray);
 	}
 
 	/***

@@ -21,10 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -298,11 +295,10 @@ public abstract class BaseExcelImportController extends BaseCrudController {
      * @throws Exception
      */
     protected <T extends BaseModel> List<T> convert2ModelList(List<String[]> dataList, boolean isPreview) throws Exception {
-        List modelList = new ArrayList<>();
         if(V.isEmpty(dataList)){
-            return modelList;
+            return Collections.emptyList();
         }
-        //
+        List modelList = new ArrayList<>();
         List<ExcelColumn> excelColumns = getExcelColumnList(getModelClass().getSimpleName());
         // 转换为id-model的map
         Map<Object, ExcelColumn> index2ModelMap = BeanUtils.convert2KeyModelMap(excelColumns, ExcelColumn.F.colIndex);
