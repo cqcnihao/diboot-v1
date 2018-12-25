@@ -35,7 +35,7 @@ import java.util.Map;
 public class ExcelReader {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelReader.class);
 
-	private static DecimalFormat fmtDecimal = new DecimalFormat("0");
+	private static DecimalFormat fmtDecimal = new DecimalFormat("0.##");
 
 	private static final String DATE_FORMAT = "yyyy-MM-dd";
 	private static final String ERROR = "ERR:";
