@@ -161,19 +161,22 @@ public class V {
     }  
       
     /** 
-     * 判断是否为整型数字
-     * @param str 
+     * 判断是否为数字类型（整型和浮点型）
+     * @param value
      * @return 
      */  
-    public static boolean isNumber(String str) {
-        try{
-        	S.isNumeric(str);
-            Integer.parseInt(str);
+    public static boolean isNumber(String value) {
+    	if(V.isEmpty(value)){
+    		return false;
+		}
+    	// 是否为整型
+        if(S.isNumeric(value)){
             return true;
         }
-        catch(Exception ex){  
-            return false;  
-        }
+        // 是否为float/double
+		boolean isDouble = S.countMatches(value, ".") ==1 && !value.startsWith(".") && !value.endsWith(".") &&
+				S.isNumeric(value.replace(".", ""));
+		return isDouble;
     }
 
 	/**
