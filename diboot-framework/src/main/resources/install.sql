@@ -143,7 +143,7 @@ CREATE TABLE `operation_log` (
   `rel_obj_id` varchar(32) DEFAULT NULL COMMENT '操作对象ID',
   `rel_obj_data` varchar(500) DEFAULT NULL COMMENT '关联数据',
   `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '有效',
-  `extdata` varchar(200) NOT NULL COMMENT '扩展',
+  `extdata` varchar(200) DEFAULT NULL COMMENT '扩展',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `idx_operate_log_o` (`rel_obj_type`, `rel_obj_id`),
