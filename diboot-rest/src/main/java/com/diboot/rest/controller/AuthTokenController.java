@@ -81,6 +81,9 @@ public class AuthTokenController extends BaseController {
 
             // 校验用户名密码是否一致
             BaseUser user = baseUserService.getUserByUsername(username);
+            if(user == null){
+                return new JsonResult(Status.FAIL_NO_PERMISSION, "无法识别的认证信息！");
+            }
             // 校验
             if(user.getPassword().equals(Encryptor.encryptPassword(password, user.getSalt()))){
                 // 查看用户账号是否过期，如果过期将enabled=false，然后更新user
