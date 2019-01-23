@@ -5,9 +5,12 @@ spring.server.connectionTimeout=10000
 spring.server.protocol=org.apache.coyote.http11.Http11Nio2Protocol
 spring.server.redirectPort=443
 spring.server.compression=on
-#文件请求大小
-spring.server.MaxFileSize=10MB
-spring.server.MaxRequestSize=50MB
+#支持文件上传
+spring.servlet.multipart.enabled=true
+# 最大支持文件大小
+spring.servlet.multipart.max-file-size=10MB
+# 最大支持请求大小
+spring.servlet.multipart.max-request-size=50MB
 
 #字符集utf-8
 spring.http.encoding.charset=UTF-8
