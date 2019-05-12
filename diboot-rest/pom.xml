@@ -22,6 +22,8 @@
   </repositories>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <spring.version>5.1.3.RELEASE</spring.version>
     <mysql.connect.version>8.0.13</mysql.connect.version>
     <mybatis.version>3.4.6</mybatis.version>
@@ -44,7 +46,7 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.devtools.version>1.5.1</diboot.devtools.version>
+    <diboot.devtools.version>1.5.5</diboot.devtools.version>
 
     <shiro.version>1.4.0</shiro.version>
     <jwt.version>3.4.1</jwt.version>
