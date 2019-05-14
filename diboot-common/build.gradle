@@ -8,6 +8,7 @@ targetCompatibility = 1.8
 
 repositories {
     maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://maven.diboot.com/repository/diboot/'}
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = "UTF-8"
@@ -29,6 +30,9 @@ dependencies {
     def springVersion = "5.1.3.RELEASE"
     def poiVersion = "4.0.1"
 
+    def dibootVersion = "1.6.+"
+    def dibootComponentVersion = "1.6.+"
+
     // providedCompile在编译时提供，不会写入war
     providedCompile(
             "javax.servlet:javax.servlet-api:4.0.1"
@@ -37,9 +41,9 @@ dependencies {
     compile fileTree(dir:'libs', include:['*.jar'])
 
     // 依赖diboot
-    compile("com.diboot:diboot-framework:1.5")
-//    compile("com.diboot:diboot-components-file:1.0.+")
-    compile("com.diboot:diboot-components-msg:1.0")
+    compile("com.diboot:diboot-framework:$dibootVersion")
+    compile("com.diboot:diboot-components-file:$dibootComponentVersion")
+    compile("com.diboot:diboot-components-msg:$dibootComponentVersion")
     
     // Spring依赖
     compile("org.springframework:spring-jdbc:$springVersion",

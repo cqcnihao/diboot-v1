@@ -26,6 +26,8 @@ sourceSets {
 }
 
 repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://maven.diboot.com/repository/diboot/'}
     maven{ url 'http://maven.diboot.com/repository/devtools/'}
 }
 
@@ -53,7 +55,7 @@ dependencies {
 //  providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 
     if(isDevEnv){// 开发环境 启用Devtools
-        compile("com.diboot:diboot-devtools-web:1.5.+")
+        compile("com.diboot:diboot-devtools-web:1.6.+")
     }
     compile fileTree(dir:'plugins', include:['*.jar'])
 

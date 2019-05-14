@@ -2,6 +2,7 @@ package com.diboot.web.service;
 
 import com.diboot.framework.model.BaseUser;
 import com.diboot.framework.service.BaseUserService;
+import com.diboot.framework.utils.Encryptor;
 import com.diboot.framework.utils.V;
 import com.diboot.web.ApplicationTest;
 import org.junit.Assert;

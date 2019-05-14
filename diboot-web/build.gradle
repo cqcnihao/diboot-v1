@@ -9,6 +9,7 @@ targetCompatibility = 1.8
 
 repositories {
     maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://maven.diboot.com/repository/diboot/'}
     maven{ url 'http://maven.diboot.com/repository/devtools/'}
 }
 
@@ -39,7 +40,7 @@ dependencies {
             "javax.servlet:javax.servlet-api:4.0.1"
     )
     if(isDevEnv){// 开发环境 启用Devtools
-        compile("com.diboot:diboot-devtools-web:1.5.+")
+        compile("com.diboot:diboot-devtools-web:1.6.+")
     }
     compile fileTree(dir:'plugins', include:['*.jar'])
 
