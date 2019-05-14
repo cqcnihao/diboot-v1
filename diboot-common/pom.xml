@@ -12,6 +12,14 @@
         <enabled>true</enabled>
       </releases>
     </repository>
+    <repository>
+      <id>maven-diboot-com</id>
+      <name>Maven Diboot Mirror</name>
+      <url>http://maven.diboot.com/repository/diboot/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
   </repositories>
 
   <properties>
@@ -39,9 +47,9 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.framework.version>1.5</diboot.framework.version>
-    <diboot.components.file.version>1.0.2</diboot.components.file.version>
-    <diboot.components.msg.version>1.0</diboot.components.msg.version>
+    <diboot.framework.version>1.6.0</diboot.framework.version>
+    <diboot.components.file.version>1.6.0</diboot.components.file.version>
+    <diboot.components.msg.version>1.6.0</diboot.components.msg.version>
   </properties>
 
   <groupId>com.diboot</groupId>

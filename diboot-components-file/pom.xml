@@ -39,12 +39,12 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.framework.version>1.5</diboot.framework.version>
+    <diboot.framework.version>1.6.0</diboot.framework.version>
   </properties>
 
   <groupId>com.diboot</groupId>
   <artifactId>diboot-components-file</artifactId>
-  <version>1.0.1</version>
+  <version>1.6.0</version>
   <dependencies>
     <dependency>
       <groupId>com.diboot</groupId>

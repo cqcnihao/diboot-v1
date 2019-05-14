@@ -14,6 +14,14 @@
     <repository>
       <id>maven-diboot-com</id>
       <name>Maven Diboot Mirror</name>
+      <url>http://maven.diboot.com/repository/diboot/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>maven-devtools-com</id>
+      <name>Maven Diboot Mirror</name>
       <url>http://maven.diboot.com/repository/devtools/</url>
       <releases>
         <enabled>true</enabled>
@@ -46,7 +54,7 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.devtools.version>1.5.5</diboot.devtools.version>
+    <diboot.devtools.version>1.6.0</diboot.devtools.version>
 
     <shiro.version>1.4.0</shiro.version>
     <jwt.version>3.4.1</jwt.version>

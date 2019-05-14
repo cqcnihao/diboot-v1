@@ -46,7 +46,7 @@
 
   <groupId>com.diboot</groupId>
   <artifactId>diboot-framework</artifactId>
-  <version>1.5</version>
+  <version>1.6.0</version>
   <packaging>jar</packaging>
 
   <name>diboot-framework</name>

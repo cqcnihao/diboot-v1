@@ -39,7 +39,7 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.framework.version>1.5</diboot.framework.version>
+    <diboot.framework.version>1.6.0</diboot.framework.version>
 
     <javax.email.version>1.4.7</javax.email.version>
     <commons.email.version>1.5</commons.email.version>
@@ -47,7 +47,7 @@
 
   <groupId>com.diboot</groupId>
   <artifactId>diboot-components-msg</artifactId>
-  <version>1.0</version>
+  <version>1.6.0</version>
   <dependencies>
     <dependency>
       <groupId>com.diboot</groupId>
