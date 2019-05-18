@@ -46,7 +46,6 @@ dependencies {
 
     // 依赖common项目
     compile project(":diboot-common")
-    compile fileTree(dir:rootProject.getRootDir().getAbsolutePath()+'/diboot-common/libs', include:['*.jar'])
 
     // 引入项目中/libs中的jar
     compile("org.hibernate.validator:hibernate-validator:6.0.13.Final",
