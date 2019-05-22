@@ -55,7 +55,7 @@
     <junit.version>4.12</junit.version>
     <servelet.version>4.0.1</servelet.version>
 
-    <diboot.devtools.version>1.6.0</diboot.devtools.version>
+    <diboot.devtools.version>1.6.1</diboot.devtools.version>
 
     <shiro.version>1.4.0</shiro.version>
     <freemarker.version>2.3.28</freemarker.version>
