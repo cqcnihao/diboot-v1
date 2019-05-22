@@ -30,7 +30,7 @@ dependencies {
     def springVersion = "5.1.3.RELEASE"
 
     // providedCompile在编译时提供，不会写入war
-    providedCompile(
+    compile(
             "javax.servlet:javax.servlet-api:4.0.1"
     )
 
