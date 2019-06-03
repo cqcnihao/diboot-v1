@@ -1,5 +1,7 @@
 # Excel数据导入
 
+> <font color=red>注意：</font>在开发Excel导入功能前，需要先在application.properties或者相关环节的配置文件下设置上传文件存储路径**files.storage.directory**，否则上传excel文件后将会出现报错。
+
 ## 创建数据导入页面的controller与views
 
 ### 创建controller
